@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>来一架-登录</title>
+    @import "../include/header.inc";
+    <style>
+        body,html{
+            height:100%;
+        }
+    </style>
+</head>
+<body class="login bg">
+<div class="container-fluid top">
+    <a href="/website/home/index.html"><img src="/website/images/static/login/logo.png" /></a>
+</div>
+<div class="main-cont-wrap login-model">
+    <form action="" id="loginForm" method="" novalidate="novalidate">
+        <div class="form-title g-mb40">
+            <span class="baseColor f20">登录</span>
+            <p class="f-fr"><a class="gray01 f14" href="register.html">注册</a>
+                <img alt="" src="/website/images/static/login/arrow.png">
+            </p>
+        </div>
+        <div class="ui-form-item g-mb30">
+            <span class="ui-form-txt">手机号码</span>
+            <span class="s-fc-gy4 s-fs14 ui-area-num">
+                +<span class="js-area-num">86</span>
+            </span>
+            <img class="ui-arrow-select js-arrow-select" alt="" src="/website/images/static/login/arrow_select.png">
+            <input class="ui-form-input ui-form-input-phone" id="login_phone" name="phone" placeholder="注册时填写的手机号" type="text" maxlength="11">
+            <ul class="ui-select-list js-select-list">
+                <li data-val="1" data-area="86">中国大陆 +86</li>
+                <li data-val="2" data-area="886">中国台湾 +886</li>
+                <li data-val="3" data-area="852">中国香港 +852</li>
+                <li data-val="4" data-area="853">中国澳门 +853</li>
+            </ul>
+        </div>
+        <!--验证码-->
+        <div class="ui-form-item g-mb20 code-box">
+            <span class="ui-form-txt">验证码</span>
+            <input class="ui-form-input" id="login_captcha" name="code" placeholder="请输入验证码" type="text">
+            <div class="getcode ui-getcode get-btn baseColor" href="javascript:;" onclick="get_code('phone_login')">获取验证码</div>
+        </div>
+        <!--<div>-->
+            <!--<input class="form-checkbox" id="rememberPwd" name="rememberPwd" type="checkbox" value="true">-->
+        <!--</div>-->
+        <div class="ui-form-btn">
+            <input class="ui-button login-btn" style="line-height: 50px;" onclick="phone_submit()" id="phone_login_btn" value="登录" readonly>
+            <p class="text-center">
+                <a class="f14 baseColor" href="/website/login/account_login.html">密码登录</a>
+            </p>
+        </div>
+        <div id="messageBox"></div>
+    </form>
+</div>
+
+<div class="container-fluid text-center bottom">CopyRight © 2010-2019 来一架All Rights Reserved皖ICP备19008267号-1 | 技术支持：来一架</div>
+@import "../include/footer.inc";
+<script type="text/javascript">
+    //选择区号
+    $(".js-arrow-select").on("click", function () {
+        var th = $(this);
+        th.toggleClass("active");
+        $(".js-select-list").stop().slideToggle();
+        $("#phone").trigger('blur');
+    });
+    $(".js-select-list li").on("click", function () {
+        var th = $(this);
+        var num = th.data("area");
+        $(".js-area-num").text(num);
+        $(".js-arrow-select").removeClass("active");
+        areaType = th.data("val");
+        $(".js-select-list").hide();
+        $("#phone").trigger('blur');
+    });
+
+    //账户登录提交
+    var _i = 0;
+    var login_type = "account";
+
+    //手机登录提交
+    function phone_submit() {
+        if ($("#login_phone").val().trim() == "") {
+            //            $('#login_phone').next().text("必填");
+            $.message("error", " 请填写手机号");
+            return;
+        }
+        if ($("#login_captcha").val().trim() == "") {
+            alert($("#login_captcha").val().trim());
+            //            $('#login_captcha').next().next().text("必填");
+            $.message("error", " 请填写验证码");
+            return;
+        }
+        $("#phone_login_btn").val("正在为您跳转");
+        $("#phone_login_btn").val("正在为您跳转");
+        $.ajax({
+            url: base + "/store/user/mobile/login.jhtml",
+            type: "POST",
+            data: {
+                mobile: $("#login_phone").val().trim(),
+                captcha: $("#login_captcha").val().trim()
+            },
+            dataType: "json",
+            cache: false,
+            success: function (message) {
+                $.message(message.type, message.content);
+                if (message.type == "success") {
+                    // setTimeout(function () {
+                    //     location.href = base + "store/member/index.jhtml";
+                    // }, 1500);
+                    setTimeout(function () {
+                        location.href = base + "website/login/tenant.html";
+                    }, 1500);
+
+                    if ($("#isRememberUsername").prop("checked")) {
+                        addCookie("memberUsername", $("#login_phone").val(), {expires: 7 * 24 * 60 * 60});
+                    } else {
+                        removeCookie("memberUsername");
+                    }
+                } else {
+                    $("#phone_login_btn").val("登录");
+                }
+            }, complete: function (data) {
+//                console.log(data);
+            }
+        });
+    }
+
+    //按enter键登录
+    document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13) { // enter 键
+            phone_submit();
+        }
+    };
+
+
+    //60秒倒计时
+    var count = 60, ii;
+
+    function refreshTime() {
+        count = count - 1;
+        if (count == 0) {
+            $(".get-btn").html("获取验证码");
+            count = 60;
+            clearInterval(ii);
+            return false;
+        }
+        $(".get-btn").html(count + "s");
+    }
+
+    //手机登录获取验证码
+    function get_code(type) {
+        var type_url = "", data = "";
+        if (count != 60) {
+            return;
+        }
+        if (type == 'phone_login') {
+            if ($("#login_phone").val().trim() == "") {
+                $.message('warn', "请先填写手机号码");
+                return false;
+            }
+            if (!(/^1[345789]\d{9}$/.test($("#login_phone").val().trim()))) {
+                $.message('warn', "请确认您的号码是否正确");
+                return false;
+            }
+            type_url = base + "/store/login/send_mobile.jhtml";
+            data = {
+                mobile: $("#login_phone").val().trim()
+            };
+        }
+        $.ajax({
+            url: type_url,
+            data: data,
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            success: function (message) {
+                $.message(message);
+                if (message.type == "success") {
+                    ii = setInterval(refreshTime, 1 * 1000);
+                    $(".get-btn").html(count + "s");
+                } else {
+                    //======兼容IE========//
+                    $("#forget_captcha_img").attr("src", base + "/common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+                }
+            }
+        });
+    }
+
+    //
+    <!--登录js验证-->
+    $().ready(function () {
+        $("#forget_captcha_img").click(function () {
+            //======兼容IE========//
+            $("#forget_captcha_img").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

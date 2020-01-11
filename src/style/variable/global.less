@@ -1,0 +1,492 @@
+@charset "UTF-8";
+//-------------通用基准----------------//
+body,html{
+  font-family: Helvetica,Pingfang SC,Microsoft YaHei,STHeiti,Verdana,Arial,Tahoma,sans-serif !important;
+}
+.container-fluid,.container{
+ padding: 0;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+  padding: 0;
+}
+ol,ul{
+  padding: 0;
+}
+.row{
+  padding: 0;
+  margin: 0;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+a{
+  &,&:hover,&:focus{
+    text-decoration: none;
+  }
+}
+li{
+  list-style: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+//默认字体
+@font-weight:400;
+@font-size-base:10px;
+
+
+
+
+
+//字体加粗
+@font-weight-bold:600;
+//板块间距
+.space{
+  //margin-top: 4%;
+  padding: 4% 0;
+}
+.bold{
+  font-weight: bold;
+}
+.link_more{
+  color: @baseColor;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid @baseColor;
+  padding: 5px 10px 3px;
+}
+img{
+  width: 100%;
+  height: 100%;
+}
+.clearFix:after {
+  content: "." ;
+  display: block ;
+  height: 0 ;
+  clear: both ;
+  visibility: hidden ;
+}
+//.clearFix{ display: inline-block; }
+
+.arrowTop(@a,@b,@c,@color){
+  width: 0;
+  height: 0;
+  border-left: @a solid transparent;
+  border-right: @b solid transparent;
+  border-bottom: @c solid @color;
+  margin: 0 auto;
+}
+
+///-------------基础函数设置方便页面样式调用-------------///
+//圆角.radius(圆角值);
+.radius(@px){
+  border-radius:@px;
+  -moz-border-radius: @px;
+  -webkit-border-radius: @px;
+}
+//display:flex兼容
+.flexs(){
+  display: -webkit-box;
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: -ms-flexbox;
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+//flex兼容
+.flex(@number){
+  -webkit-box-flex: @number;      /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: @number;         /* OLD - Firefox 19- */
+  -webkit-flex: @number;          /* Chrome */
+  -ms-flex: @number;              /* IE 10 */
+  flex: @number;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+.flex-direction(@name){
+  -webkit-flex-direction: @name;
+  -ms-flex-direction: @name;
+  flex-direction: @name;
+}
+//box兼容----用法见下方panel 图文面板
+.box-align(@name){
+  -moz-box-align: @name;
+  -webkit-box-align: @name;
+  -ms-flex-align: @name;
+}
+.box-direction(@name){
+  -webkit-box-direction: @name;
+  -moz-box-direction: @name;
+}
+.box-orient(@name){
+  -webkit-box-orient: @name;
+  -moz-box-orient: @name;
+}
+.box-pack(@name){
+  -moz-box-pack: @name;
+  -ms-flex-pack: @name;
+  -webkit-box-pack: @name;
+}
+.align-items(@name){
+  -webkit-align-items: @name;
+  align-items: @name;
+}
+.justify-content(@name){
+  justify-content:@name;
+  -webkit-justify-content: @name;
+}
+//-----分割线 用法.mixin(分割线位置,线条状态,色值);-----//
+.mixin (@a,@b,@color) when (@a=right) {
+  border-right: 1px @b @color;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+  -webkit-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+}
+.mixin (@a,@b,@color) when (@a=bottom) {
+  border-bottom: 1px @b @color;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+.mixin (@a,@b,@color) when (@a=left) {
+  border-left: 1px @b @color;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+.mixin (@a,@b,@color) when (@a=top) {
+  border-top: 1px @b @color;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+.mixin(@a,@b,@color){
+  content: " ";
+  position: absolute;
+  color: @color;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+// ----- 尺寸值转为视窗单位 ----- //
+@viewportbase: 6.4;
+.size(){
+  /*@size:"转换前的实际数值单位(如：10px)";*/
+unit(@size/@viewportbase, vw)
+  /*less引用unit(@size/@viewportbase, vw)*/
+  /*例如：padding-top: unit(20px/@viewportbase, vw);*/
+}
+//--------Panel 图文面板 内容自动上下居中扩散-------------//
+//------主要应用于首页的列表(图文面板)等-------//
+//父级
+.reset-cell(){
+  .flexs;
+  .box-direction(normal);
+  .box-orient(horizontal);
+  .flex-direction(row);
+  .box-align(stretch);
+  .align-items(stretch);
+}
+//子级左
+.reset-cell__bd(){
+  .flexs;
+  .box-direction(normal);
+  .box-orient(vertical);
+  .flex-direction(column);
+  .box-pack(justify);
+  .justify-content(space-between);
+}
+//子级右
+.reset-cell__ft(){
+  .flexs;
+  .box-direction(normal);
+  .box-orient(vertical);
+  .flex-direction(column);
+  .box-pack(center);
+  .justify-content(center);
+}
+//------------一行文本溢出省略----------//
+.over-flow_omit{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+.over-flow_omit(){
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+//------------自定义文本溢出省略----------//
+.word_omitted_two(@num) {
+  text-overflow:-o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @num;
+  -webkit-box-orient: vertical;
+}
+//--------标签左右/上下渐变效果---------------//
+//@name=[top/bottom/left/right],@left=开始色值, @right=结束色值
+.gradual-change(@name,@left,@right){
+  background: @left;
+  background-image:-webkit-linear-gradient(to @name,@left, @right);
+  background: -o-linear-gradient(to @name,@left, @right); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(to @name,@left, @right); /* Firefox 3.6 - 15 */
+  background-image:linear-gradient(to @name,@left,@right);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=@left, endColorstr=@right);
+}
+//opacity兼容
+.opacity(@number){
+  /* older safari/Chrome browsers */
+  -webkit-opacity: @number/100;
+  /* Netscape and Older than Firefox 0.9 */
+  -moz-opacity: @number/100;
+  /* Safari 1.x (pre WebKit!) 老式khtml内核的Safari浏览器*/
+  -khtml-opacity: @number/100;
+  /* IE9 + etc...modern browsers */
+  opacity: @number/100;
+  /* IE 4-9 */
+  filter:alpha(opacity=@number);
+  /*This works in IE 8 & 9 too*/
+  -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=@number);
+  /*IE4-IE9*/
+  filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=@number);
+}
+
+body{
+  line-height: 1.6 !important;
+  padding: 0 !important;
+}
+
+.icon {
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+
+/* 超小屏幕（手机，小于 768px） */
+/* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 Bootstrap 是移动设备优先的吗？） */
+@media (max-width: 750px) {
+  @font-size-base:1px;
+  /* 媒体查询字体 每隔一档@font-size-base用基准字体 +1 或 减-1 定义字体以f开头+字体大小*/
+  .f10{font-size: @font-size-base;}
+  .f11{font-size: @font-size-base + 1;}
+  .f12{font-size: @font-size-base + 2;}
+  .f13{font-size: @font-size-base + 3;}
+  .f14{font-size: @font-size-base + 4;}
+  .f15{font-size: @font-size-base + 5;}
+  .f16{font-size: @font-size-base + 6;}
+  .f17{font-size: @font-size-base + 7;}
+  .f18{font-size: @font-size-base + 8 !important;}
+  .f20{font-size: @font-size-base + 10;}
+  .f21{font-size: @font-size-base + 11;}
+  .f22{font-size: @font-size-base + 12;}  //ico图标
+  .f24{font-size: @font-size-base + 14 !important;}
+  .f26{font-size: @font-size-base + 16;}
+  .f28{font-size: @font-size-base + 18;}
+  .f30{font-size: @font-size-base + 20;}
+  .f32{font-size: @font-size-base + 22 !important;}
+  .f36{font-size: @font-size-base + 26 !important;}
+  .f38{font-size: @font-size-base + 28;}
+  .f40{font-size: @font-size-base + 30;}
+  .f42{font-size: @font-size-base + 32 !important;}
+  .f44{font-size: @font-size-base + 34;}
+  .f48{font-size: @font-size-base + 38 !important;}
+  .f50{font-size: @font-size-base + 40;}
+  .f52{font-size: @font-size-base + 42 !important;}
+  .f60{font-size: @font-size-base + 50 !important;}
+  .f72{font-size: @font-size-base + 62 !important;}
+  .f80{font-size: @font-size-base + 70 !important;}
+  .f100{font-size: @font-size-base + 90 !important;}
+}
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: 768px) {
+  @font-size-base:3px;
+  /* 媒体查询字体 每隔一档@font-size-base用基准字体 +1 或 减-1 定义字体以f开头+字体大小*/
+  .f10{font-size: @font-size-base;}
+  .f11{font-size: @font-size-base + 1;}
+  .f12{font-size: @font-size-base + 2;}
+  .f13{font-size: @font-size-base + 3;}
+  .f14{font-size: @font-size-base + 4;}
+  .f15{font-size: @font-size-base + 5;}
+  .f16{font-size: @font-size-base + 6;}
+  .f17{font-size: @font-size-base + 7;}
+  .f18{font-size: @font-size-base + 8 !important;}
+  .f20{font-size: @font-size-base + 10;}
+  .f21{font-size: @font-size-base + 11;}
+  .f22{font-size: @font-size-base + 12;}  //ico图标
+  .f24{font-size: @font-size-base + 14 !important;}
+  .f26{font-size: @font-size-base + 16;}
+  .f28{font-size: @font-size-base + 18;}
+  .f30{font-size: @font-size-base + 20;}
+  .f32{font-size: @font-size-base + 22 !important;}
+  .f36{font-size: @font-size-base + 26 !important;}
+  .f38{font-size: @font-size-base + 28;}
+  .f40{font-size: @font-size-base + 30;}
+  .f42{font-size: @font-size-base + 32 !important;}
+  .f44{font-size: @font-size-base + 34;}
+  .f48{font-size: @font-size-base + 38 !important;}
+  .f50{font-size: @font-size-base + 40;}
+  .f52{font-size: @font-size-base + 42 !important;}
+  .f60{font-size: @font-size-base + 50 !important;}
+  .f72{font-size: @font-size-base + 62 !important;}
+  .f80{font-size: @font-size-base + 70 !important;}
+  .f100{font-size: @font-size-base + 90 !important;}
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+  @font-size-base:5px;
+  /* 媒体查询字体 每隔一档@font-size-base用基准字体 +1 或 减-1 定义字体以f开头+字体大小*/
+  .f10{font-size: @font-size-base;}
+  .f11{font-size: @font-size-base + 1;}
+  .f12{font-size: @font-size-base + 2;}
+  .f13{font-size: @font-size-base + 3;}
+  .f14{font-size: @font-size-base + 4;}
+  .f15{font-size: @font-size-base + 5;}
+  .f16{font-size: @font-size-base + 6;}
+  .f17{font-size: @font-size-base + 7;}
+  .f18{font-size: @font-size-base + 8 !important;}
+  .f20{font-size: @font-size-base + 10;}
+  .f21{font-size: @font-size-base + 11;}
+  .f22{font-size: @font-size-base + 12;}  //ico图标
+  .f24{font-size: @font-size-base + 14 !important;}
+  .f26{font-size: @font-size-base + 16;}
+  .f28{font-size: @font-size-base + 18;}
+  .f30{font-size: @font-size-base + 20;}
+  .f32{font-size: @font-size-base + 22 !important;}
+  .f36{font-size: @font-size-base + 26 !important;}
+  .f38{font-size: @font-size-base + 28;}
+  .f40{font-size: @font-size-base + 30;}
+  .f42{font-size: @font-size-base + 32 !important;}
+  .f44{font-size: @font-size-base + 34;}
+  .f48{font-size: @font-size-base + 38 !important;}
+  .f50{font-size: @font-size-base + 40;}
+  .f52{font-size: @font-size-base + 42 !important;}
+  .f60{font-size: @font-size-base + 50 !important;}
+  .f72{font-size: @font-size-base + 62 !important;}
+  .f80{font-size: @font-size-base + 70 !important;}
+  .f100{font-size: @font-size-base + 90 !important;}
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1200px) {
+  @font-size-base:10px;
+  /* 媒体查询字体 每隔一档@font-size-base用基准字体 +1 或 减-1 定义字体以f开头+字体大小*/
+  .f10{font-size: @font-size-base;}
+  .f11{font-size: @font-size-base + 1;}
+  .f12{font-size: @font-size-base + 2;}
+  .f13{font-size: @font-size-base + 3;}
+  .f14{font-size: @font-size-base + 4;}
+  .f15{font-size: @font-size-base + 5;}
+  .f16{font-size: @font-size-base + 6;}
+  .f17{font-size: @font-size-base + 7;}
+  .f18{font-size: @font-size-base + 8 !important;}
+  .f20{font-size: @font-size-base + 10;}
+  .f21{font-size: @font-size-base + 11;}
+  .f22{font-size: @font-size-base + 12;}  //ico图标
+  .f24{font-size: @font-size-base + 14 !important;}
+  .f26{font-size: @font-size-base + 16;}
+  .f28{font-size: @font-size-base + 18;}
+  .f30{font-size: @font-size-base + 20;}
+  .f32{font-size: @font-size-base + 22 !important;}
+  .f36{font-size: @font-size-base + 26 !important;}
+  .f38{font-size: @font-size-base + 28;}
+  .f40{font-size: @font-size-base + 30;}
+  .f42{font-size: @font-size-base + 32 !important;}
+  .f44{font-size: @font-size-base + 34;}
+  .f48{font-size: @font-size-base + 38 !important;}
+  .f50{font-size: @font-size-base + 40;}
+  .f52{font-size: @font-size-base + 42 !important;}
+  .f60{font-size: @font-size-base + 50 !important;}
+  .f72{font-size: @font-size-base + 62 !important;}
+  .f80{font-size: @font-size-base + 70 !important;}
+  .f100{font-size: @font-size-base + 90 !important;}
+}
+
+/* 媒体查询字体 每隔一档@font-size-base用基准字体 +1 或 减-1 定义字体以f开头+字体大小*/
+//.f10{font-size: @font-size-base;}
+//.f11{font-size: @font-size-base + 1;}
+//.f12{font-size: @font-size-base + 2;}
+//.f13{font-size: @font-size-base + 3;}
+//.f14{font-size: @font-size-base + 4;}
+//.f15{font-size: @font-size-base + 5;}
+//.f16{font-size: @font-size-base + 6;}
+//.f17{font-size: @font-size-base + 7;}
+//.f18{font-size: @font-size-base + 8 !important;}
+//.f20{font-size: @font-size-base + 10;}
+//.f21{font-size: @font-size-base + 11;}
+//.f22{font-size: @font-size-base + 12;}  //ico图标
+//.f24{font-size: @font-size-base + 14 !important;}
+//.f26{font-size: @font-size-base + 16;}
+//.f28{font-size: @font-size-base + 18;}
+//.f30{font-size: @font-size-base + 20;}
+//.f32{font-size: @font-size-base + 22 !important;}
+//.f36{font-size: @font-size-base + 26 !important;}
+//.f38{font-size: @font-size-base + 28;}
+//.f40{font-size: @font-size-base + 30;}
+//.f42{font-size: @font-size-base + 32 !important;}
+//.f44{font-size: @font-size-base + 34;}
+//.f48{font-size: @font-size-base + 38 !important;}
+//.f50{font-size: @font-size-base + 40;}
+//.f52{font-size: @font-size-base + 42 !important;}
+//.f60{font-size: @font-size-base + 50 !important;}
+//.f72{font-size: @font-size-base + 62 !important;}
+//.f80{font-size: @font-size-base + 70 !important;}
+//.f100{font-size: @font-size-base + 90 !important;}
+
+@media (max-width: 1500px) {
+  .header{
+    .container-fluid{
+      .f44{
+        font-size: 32px;
+      }
+      .f20{
+        font-size: 16px;
+      }
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .header{
+    .container-fluid{
+      .f44{
+        font-size: 24px;
+      }
+      .f20{
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>来一架-创建店铺</title>
+    @import "../include/header.inc";
+    <style>
+        body, html {
+            height: 100%;
+        }
+    </style>
+    <!--[if IE]>
+    <script type="text/javascript">
+        $(function () {
+            var heigh = $(window).height();
+            if (heigh < 780)
+                $('.zhuce').css({'top': '39%', 'height': '600px'});
+            $('.g-mb40').css({'margin-bottom': '20px'});
+            $('.g-mb30').css({'margin-bottom': '20px'});
+        });
+    </script>
+    <![endif]-->
+</head>
+<body class="login bg">
+<div class="container-fluid tenant_top establish" style="height: 100%;">
+    <div class="container" style="height: 100%; overflow-y: auto;">
+        <div class="row tenant_top_nav">
+            <div class="col-xs-1 col-md-1"><a href="/website/home/index.html"><img src="/website/images/static/login/logo.png"/></a></div>
+            <div class="col-xs-6 col-md-6 title">
+                <span class="f20 gray02">创建店铺</span>
+            </div>
+            <div class="col-xs-5 col-md-5 text-right">
+                <span class="f13 gray02 bold">+86-<span class="top_phone"></span></span>
+                <a href="javascript:;" class="f13 baseColor sign_out">退出</a>
+            </div>
+        </div>
+        <div class="establish_form"  style="position: relative;">
+            <a href="javascript:history.go(-1)" class="baseColor f13" style="position:absolute; top: 1%;left: 5px;"><&nbsp;&nbsp;上一步</a>
+            <form action="" id="signUpForm" method="get">
+                <div class="form-title g-mb40">
+
+                    <!--<p class="text-center f20">选择要创建来一架连锁的方式</p>-->
+                </div>
+                <div class="ui-form-item g-mb30">
+                    <span class="ui-form-txt">品牌名称</span>
+                    <input class="ui-form-input" id="form-storeName" name="code" placeholder="请输入门店名称" type="text" style="width: 360px;">
+                </div>
+                <div class="ui-form-item g-mb30">
+                    <span class="ui-form-txt">主营类目</span>
+                    <select id="form-category" style="width: 364px;height: 30px; line-height:30px;border: none;">
+                        <option value="#">请选择</option>
+                    </select>
+                </div>
+                <div class="ui-form-item g-mb30 f-pr">
+                    <span class="ui-form-txt">总部地区</span>
+                    <div class="address-wrap" style="top: -4px; left: 71px;">
+                        <!--<label for="address"></label>-->
+                        <address>
+                            <div class="dropdown">
+                                <div class="dropdown-toggle">
+                                    <div class="input-group" title="">
+                                        <input type="text" class="form-control address-input city_choose" readonly="readonly"
+                                               placeholder="请选择省 / 市 / 区" style="width: 340px !important;">
+                                        <span class="input-group-addon address-addon">
+                                    <i class="fa fa-caret-down down-icon"></i>
+                                </span>
+                                    </div>
+                                </div>
+                                <div class="city_choose">
+                                    <img class="ui-select" style="width: 20px;" src="/website/images/static/login/arrow_down.png">
+                                    <input class="ui-form-input input-hide" id="address" name="address" type="text">
+                                </div>
+                                <!--<div class="mask"></div>-->
+                                <ul class="dropdown-menu address address-con" style="display: none;">
+                                    <div class="address-tab m-b-sm wrapper-sm">
+                                        <a href="javascript:;" class="active">省</a>
+                                        <a href="javascript:;">市</a>
+                                        <a href="javascript:;">区</a>
+                                    </div>
+                                    <div class="row address-body" id="areaList"></div>
+                                </ul>
+                            </div>
+                        </address>
+                    </div>
+                </div>
+                <div class="ui-form-item g-mb30 code-box">
+                    <span class="ui-form-txt">详细地址</span>
+                    <input class="ui-form-input" id="form-fullAddress" name="code" placeholder="请输入详细地址" type="text" style="width: 364px;">
+                </div>
+                <div class="ui-form-item g-mb30">
+                    <span class="ui-form-txt">门店数量</span>
+                    <input class="ui-form-input" id="form-storeNum" name="code" placeholder="请填写你有几家门店" type="number">
+                </div>
+                <div class="f13" id="check">
+                    <label>
+                    <span><input type="checkbox" class="input_check" id="check1"><label for="check1"></label></span>
+                    我已阅读并同意<a href="javascript:;" class="baseColor">《来一架连锁版订购及服务协议》</a>和<a href="javascript:;" class="baseColor">《担保交易服务协议》</a></label>
+                </div>
+
+                <div class="ui-form-btn g-mb20" style="position: static;margin: 50px 0 20px;">
+                    <!--<input class="ui-button" type="button" id="" value="创建店铺" onclick="establish_submit()" style="">-->
+                    <input class="ui-button login-btn" type="button" style="line-height: 50px; margin: 0 auto; position: relative; z-index: 999999999;" id="submit" onclick="establish_submit()" value="创建店铺" readonly>
+                </div>
+                <p class="gray05 f13 text-center">提示： 创建店铺成功后，可以在【店铺-门店管理】新增门店</p>
+                <div id="messageBox"></div>
+                <div id="tcaptcha"></div>
+            </form>
+            <!--<div class="text-center bottom gray05">CopyRight © 2010-2019 来一架All Rights Reserved皖ICP备19008267号-1 | 技术支持：来一架</div>-->
+            <div class="text-center gray05">CopyRight © 2010-2019 来一架All Rights Reserved皖ICP备19008267号-1 | 技术支持：来一架</div>
+        </div>
+    </div>
+</div>
+
+@import "../include/footer.inc";
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script type="text/javascript">
+    var selectArea = [];
+    // getArea();
+    // $(function () {
+        //60秒倒计时
+        var count = 60, iiRg;
+        var areaId;
+        // var base = location.protocol + "//" + (location.host.toUpperCase() === 'LOCALHOST:8080' ? 'dev.tiaohuo.com/' : location.host + "/");
+
+
+        $(".ui-form-item input").focus(function(){
+            $(this).parent('.ui-form-item').css({'border-bottom':'3px solid #2589ff'});
+        });
+        $(".ui-form-item input").blur(function(){
+            $(this).parent('.ui-form-item').css({'border-bottom':'1px solid #e3e3e3'});
+        });
+
+        $('.sign_out').attr('href',base + '/store/member/logout.jhtml');
+
+        $.ajax({
+            url: base + "store/member/view.jhtml",
+            type: "get",
+            data: '',
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $('.top_phone').html(data.mobile);
+            }
+        });
+
+        function refreshTimeRg() {
+            count = count - 1;
+            if (count == 0) {
+                $("#getPhoneCode").html("重新获取");
+                count = 60;
+                clearInterval(iiRg);
+                return false;
+            }
+            $("#getPhoneCode").html(count + "s");
+        }
+
+        function renderArea(area, areaId) {
+            var html = ''
+            area.map(function (v, i) {
+                html += '' +
+                    '<div class="col-sm-3 address-list ng-scope" data-id="' + v.id + '">' +
+                    '   <div class="pointer">' +
+                    '       <span class="selectArea ' + (i === 0 ? "active" : "") + '" data-fullname="' + v.fullName + '" data-haschildren="' + (v.hasChildren ? '1' : '0') + '" data-id="' + areaId + '!' + v.id + '">' + v.name + '</span>' +
+                    '   </div>' +
+                    '</div>';
+            });
+            return html;
+        }
+
+        // 获取省市区数据
+        var getArea = (function () {
+            var area = [];
+            var areaChildren = {};
+            return function (id) {
+                var def = $.Deferred();
+                if (!id && area.length > 0) {
+                    def.resolve(area);
+                    return def;
+                }
+                if (id && areaChildren[id] && areaChildren[id].length > 0) {
+                    def.resolve(areaChildren[id]);
+                    return def;
+                }
+                $.ajax({
+                    url: base + '/weixin/area/children.jhtml',
+                    data: {
+                        areaId: id
+                    },
+                    method: 'GET',
+                    success: function (res) {
+                        if (!id) {
+                            area = res.data
+                        } else {
+                            areaChildren[id] = res.data
+                        }
+                        def.resolve(res.data)
+                    }
+                });
+                return def;
+            }
+        })();
+
+        getArea().then(function (area) {
+            $('#areaList').html(renderArea(area, ''))
+//            console.log("$('#areaList')"+$('#areaList').html());
+        });
+        $('.address-tab a').click(function () {
+            var index = $(this).index();
+            if (selectArea.length - 1 <= index) {
+                return false;
+            }
+            $(this).addClass('active').siblings().removeClass('active');
+            getArea(selectArea[index]).then(function (area) {
+                $('#areaList').html(renderArea(area, selectArea.slice(0, index + 1).join('!')));
+            });
+        });
+        $(document).on('click', '.selectArea', function () {
+            var atData = $(this).data();
+            var id = atData.id.toString().split('!');
+            areaId=atData.id.split("!")[id.length-1];
+            var hasChildren = atData.haschildren;
+            var fullName = atData.fullname;
+            $('.address-list .selectArea').removeClass('active');
+            selectArea = JSON.parse(JSON.stringify(id));
+            $(this).addClass('active');
+            if (hasChildren == 0) {
+                $('.address-con').hide();
+                $('.address-input').css('color', '#333').val(fullName);
+                return true;
+            }
+            var idLen = id.length;
+            getArea(id[idLen - 1]).then(function (area) {
+                $('#areaList').html(renderArea(area, id.join('!')));
+                $('.address-tab a').eq(selectArea.length - 1).addClass('active').siblings().removeClass('active');
+            })
+        });
+
+        var areaType = 1;
+
+
+        $(document).on('click', '.city_choose', function () {
+            $('.address-con').css({'display': 'block'});
+            $('.mask').css({'display': 'block'});
+        });
+        $(document).on('click', '.mask', function () {
+            $('.address-con').css({'display': 'none'});
+            $('.mask').css({'display': 'none'});
+        });
+        //加载主营类目
+        // $(".getcode").on("click", function () {
+            $.ajax({
+                url: base + "/store/member/tenant/category.jhtml",
+                data: '',
+                dataType: "json",
+                type: "get",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (data) {
+                    for(var i=0;i<data.length;i++){
+                        $("#form-category").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+                    }
+                }
+            });
+        // });
+
+
+
+
+        //按enter键登录
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) { // enter 键
+                establish_submit();
+            }
+        };
+
+
+
+
+
+    // })
+    //======注册提交======//
+    function establish_submit() {
+        // $("#submit").click(function () {
+        var options=$('#form-category option:selected');
+        var categoryId = options.val();
+
+        if ($("#form-storeName").val().trim() == '') {
+            $.message("error", "品牌名称不能为空");
+            return;
+        }
+        if(categoryId == '#'){
+            $.message("error", "主营类目不能为空");
+            return;
+        }
+        if(!areaId){
+            $.message("error", "请选择地区");
+            return;
+        }
+        if ($("#form-fullAddress").val() == "") {
+            $.message("error", "请填写详细地址");
+            return;
+        }
+        if($('#check1').is(':checked') == false){
+            $.message("error", "请先阅读并同意《来一架连锁版订购及服务协议》和《担保交易服务协议》");
+            return;
+        }
+
+        $.ajax({
+            url: base + "/store/member/tenant/register.jhtml",
+            type: "POST",
+            data: {
+                name: $("#form-storeName").val().trim(),
+                categoryId:categoryId,
+                address: $("#form-fullAddress").val().trim(),
+                areaId: areaId
+            },
+            dataType: "json",
+            cache: false,
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $.message('warn', "获取数据失败");
+            },
+            success: function (message) {
+                if (message.type == "success") {
+
+                    $.message("success", "创建成功，等待审核中...");
+                    setTimeout(function () {
+                        location.replace('/website/login/tenant.html')
+                    },1500);
+                    //                            login_method("account");
+                } else {
+                    $.message(message);
+                }
+            }
+        });
+
+        // });
+    }
+
+</script>
+
+</body>
+
+</html>

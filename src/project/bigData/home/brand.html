@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>来一架大数据分析平台</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="合肥付利购电子商务有限公司">
+    <meta name="copyright" content="合肥付利购电子商务有限公司版权所有">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta http-equiv="refresh" content="36000">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../style/common.min.css"/>
+</head>
+<body ontouchstart>
+
+<div class="container-fluid brandBaseColor">
+    <div class="row bigDataBrand">
+        <div class="brandLeft col-xs-12 col-md-2 hidden-xs hidden-sm">
+            <div class="weui-cell">
+                <div class="weui-cell__hd logo">
+                    <img src="/bigData/images/include/logo.png">
+                </div>
+                <div class="weui-cell__bd">
+                    <p class="f22">来一架</p>
+                    <p class="f14 blue03">新零售的截拳道</p>
+                </div>
+            </div>
+            <ul class="brand_list f20"></ul>
+        </div>
+        <!--手机导航栏-->
+        <div class="mask"></div>
+        <div id="mobile-menu" class="mobile-nav visible-xs visible-sm hide-nav">
+            <div class="brandLeft">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd logo">
+                        <img src="/bigData/images/include/logo.png">
+                    </div>
+                    <div class="weui-cell__bd">
+                        <p class="f22">来一架</p>
+                        <p class="f14 blue03">新零售的截拳道</p>
+                    </div>
+                </div>
+                <ul class="brand_list f20"></ul>
+            </div>
+        </div>
+        <div class="content col-xs-12 col-md-10">
+            <div class="sum clearFix hidden-xs hidden-sm">
+                <div class="sum_item fl">
+                    <i class="iconfont icondapingmu_huabanfuben blue04 bold f50"></i>
+                    <div>
+                        <p class="f24">货架总数量</p>
+                        <p class="f36 white"><span class="shelfSum"></span> 个</p>
+                    </div>
+                </div>
+                <div class="sum_item fl">
+                    <i class="iconfont icondapingmu_huabanfuben2 blue04 bold f50"></i>
+                    <div>
+                        <p class="f24">销售总额</p>
+                        <p class="f36 white">¥ <span class="moneySum"></span></p>
+                    </div>
+                </div>
+                <div class="sum_item fl">
+                    <i class="iconfont icondapingmu_huabanfuben3 blue04 bold f50"></i>
+                    <div>
+                        <p class="f24">订单总数量</p>
+                        <p class="f36 white"><span class="orderSum"></span> 单</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-md hidden-lg clearFix">
+                <!--手机导航栏侧滑-->
+                <div class="nav-btn visible-xs visible-sm fl">
+                    <a href="javascript:;" class="mobile-nav-taggle f28" id="mobile-nav-taggle">
+                        <i class="iconfont iconrecovery f42 brandBaseColor"></i>
+                    </a>
+                </div>
+                <div class="sum sum_small text-center clearFix fr">
+                    <div class="sum_item fl">
+                        <p class="f24">货架总数量</p>
+                        <p class="f24 white"><span class="shelfSum"></span> 个</p>
+                    </div>
+                    <div class="sum_item fl ">
+                        <p class="f24">销售总额</p>
+                        <p class="f24 white">¥ <span class="moneySum"></span></p>
+                    </div>
+                    <div class="sum_item fl">
+                        <p class="f24">订单总数量</p>
+                        <p class="f24 white"><span class="orderSum"></span> 单</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="number row clearFix">
+                <div class="mouth fl">
+                    <div class="tit f24">每月货架数</div>
+                    <div class="numberBar">
+                        <div id="numberBar"></div>
+                    </div>
+                </div>
+                <div class="week fr">
+                    <div class="tit f24">每周货架数</div>
+                    <div id="numberPie"></div>
+                </div>
+            </div>
+            <div class="money clearFix">
+                <div class="mouth fl">
+                    <div class="tit f24">每月销售额</div>
+                    <div id="moneyBar"></div>
+                </div>
+                <div class="week fr">
+                    <div class="tit f24">每周销售额</div>
+                    <div id="moneyPie"></div>
+                </div>
+            </div>
+            <div class="order clearFix">
+                <div class="mouth fl">
+                    <div class="tit f24">每月订单数</div>
+                    <div class="orderBar">
+                        <div id="orderBar"></div>
+                    </div>
+                </div>
+                <div class="week fr">
+                    <div class="tit f24">每周订单数</div>
+                    <div id="orderPie"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/bigData/js/common.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var date = new Date;
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        //数字转换
+        function toChinese(num) {
+            let N = [
+                "零", "一", "二", "三", "四", "五", "六", "七", "八", "九"
+            ];
+            let str = num.toString();
+            let len = num.toString().length;
+            let C_Num = [];
+            for (let i = 0; i < len; i++) {
+                C_Num.push(N[str.charAt(i)]);
+            }
+            return C_Num.join('');
+        }
+        //货架总数量、销售总额、订单总数量、每月销售额、每月订单数
+        function sum(tenantId){
+            $.ajax({
+                method: 'GET',
+                url: base + 'api/v1/trade/shelvesDailySalesDataView',
+                data: {
+                    tenantId:tenantId
+                },
+                dataType: 'json',
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("client_type", "dataView");
+                },
+                success: function (res) {
+                    // console.log(res)
+                    $('.moneySum').html(res.body.totalAmount.toLocaleString());
+                    $('.orderSum').html(res.body.totalTimes.toLocaleString());
+                    $('.shelfSum').html(res.body.totalShelvesCount.toLocaleString());
+
+                    //每月销售额
+                    moneyBar.hideLoading();
+                    if(res.body.tradeDataView.length > 0){
+                        //每月订单数
+                        orderBar.hideLoading();
+                        var monthNum = [];
+                        var orderNum = [];
+                        var list = [];
+                        var monthMoney = [];
+                        var money = [];
+                        for(var i=0;i<res.body.tradeDataView.length;i++){
+                            var monthA = res.body.tradeDataView[i].month;
+                            var monthNumL = monthA.replace(/\b(0+)/gi,"") + '月';
+                            var numL = res.body.tradeDataView[i].amount;
+                            var aa = res.body.tradeDataView[i].amount/res.body.totalTimes;
+                            monthNum.push(monthNumL);
+                            orderNum.push(numL);
+                            list.push(aa);
+                            var monthOrderL = res.body.tradeDataView[i].month;
+                            var moneyL = res.body.tradeDataView[i].totalAmount;
+                            monthMoney.push(monthOrderL);
+                            money.push(moneyL);
+                        }
+                        moneyBar.setOption({
+                            xAxis: {
+                                data: monthMoney
+                            },
+                            yAxis: {
+                                // min: monthUser,
+                                // max: res.body.maxMonthAmount
+                            },
+                            series: [{
+                                itemStyle: {
+                                    normal: {
+                                        // color: '#29456f',
+                                        color:function (params) {
+                                            // console.log(params.dataIndex)
+                                            if(params.dataIndex == month){
+                                                return '#7bb0ff'
+                                            }else{
+                                                return '#29456f'
+                                            }
+                                        }
+                                    }
+                                },
+                                data: money
+                            }]
+                        });
+
+                        // 填入数据并高亮显示当月数据
+                        orderBar.setOption({
+                            yAxis: {
+                                axisLabel: {
+                                    textStyle: {
+                                        color:function(value,index){
+                                            if(index == month){
+                                                return '#fff'
+                                            }else{
+                                                return '#4a5a7f'
+                                            }
+                                        },
+                                    }
+                                },
+                                data:monthNum
+                            },
+                            series: [{
+                                type: 'bar',
+                                barGap: '-100%',
+                                itemStyle: {
+                                    normal: {
+
+                                        color:function (params) {
+                                            // console.log(params.dataIndex)
+                                            if(params.dataIndex == month){
+                                                return '#1a223e'
+                                            }else{
+                                                return '#122548'
+                                            }
+                                        }
+                                    },
+                                },
+                                label: {
+                                    normal: {
+                                        formatter:
+                                            function (param) {
+                                                return orderNum[param.dataIndex] + '单';
+                                            },
+                                    }
+                                },
+                                data: [1,1,1,1,1,1,1,1,1,1,1,1],
+                            }, {
+                                type: 'bar',
+                                data: list,
+                                itemStyle: {
+                                    normal: {
+                                        barBorderRadius:[20],
+                                        // color: '#293f73',
+                                        color:function (params) {
+                                            // console.log(params.dataIndex)
+                                            if(params.dataIndex == month){
+                                                return '#f34d4e'
+                                            }else{
+                                                return '#293f73'
+                                            }
+                                        }
+                                    },
+                                },
+                            }]
+                        });
+                    }else{
+                        moneyBar.setOption({
+                            xAxis: {
+                                data: []
+                            },
+                            yAxis: {
+                                // min: monthUser,
+                                // max: res.body.maxMonthAmount
+                            },
+                            series: [{
+                                itemStyle: {
+                                    normal: {
+                                        // color: '#29456f',
+                                        color:function (params) {
+                                            // console.log(params.dataIndex)
+                                            if(params.dataIndex == month){
+                                                return '#7bb0ff'
+                                            }else{
+                                                return '#29456f'
+                                            }
+                                        }
+                                    }
+                                },
+                                data: []
+                            }]
+                        });
+                        orderBar.setOption({
+                            yAxis: {
+                                axisLabel: {
+                                    textStyle: {
+                                        color:function(value,index){
+                                            if(index == month){
+                                                return '#fff'
+                                            }else{
+                                                return '#4a5a7f'
+                                            }
+                                        },
+                                    }
+                                },
+                                data:[]
+                            },
+                            series: [{
+                                type: 'bar',
+                                barGap: '-100%',
+                                itemStyle: {
+                                    normal: {
+
+                                        color:function (params) {
+                                            // console.log(params.dataIndex)
+                                            if(params.dataIndex == month){
+                                                return '#1a223e'
+                                            }else{
+                                                return '#122548'
+                                            }
+                                        }
+                                    },
+                                },
+                                label: {
+                                },
+                                data: [1,1,1,1,1,1,1,1,1,1,1,1],
+                            }, {
+                                type: 'bar',
+                                data: [],
+                                itemStyle: {
+                                    normal: {
+                                        barBorderRadius:[20],
+                                        // color: '#293f73',
+                                        color:function (params) {
+                                            // console.log(params.dataIndex)
+                                            if(params.dataIndex == month){
+                                                return '#f34d4e'
+                                            }else{
+                                                return '#293f73'
+                                            }
+                                        }
+                                    },
+                                },
+                            }]
+                        });
+
+                    }
+
+
+                    //高亮显示当月数据（每月货架数）
+                    numberBar.setOption({
+                        yAxis : [
+                            {
+                                axisLabel: {
+                                    textStyle: {
+                                        color:function(value,index){
+                                            if(index == month){
+                                                return '#fff'
+                                            }else{
+                                                return '#4a5a7f'
+                                            }
+                                        },
+                                    }
+                                }
+                            }
+                        ],
+                        series: [{
+                            type: 'bar',
+
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'right',
+                                    color: '#4a5a7f',
+                                    fontSize: 14,
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+
+                                    color:function (params) {
+                                        // console.log(params.dataIndex)
+                                        if(params.dataIndex == month){
+                                            return '#1a223e'
+                                        }else{
+                                            return '#122548'
+                                        }
+                                    }
+                                },
+                            },
+
+                        }, {
+                            type: 'bar',
+
+                            itemStyle: {
+                                normal: {
+                                    barBorderRadius:[20],
+                                    // color: '#293f73',
+                                    color:function (params) {
+                                        // console.log(params.dataIndex)
+                                        if(params.dataIndex == month){
+                                            return '#f34d4e'
+                                        }else{
+                                            return '#293f73'
+                                        }
+                                    }
+                                },
+                            },
+                        }]
+                    });
+                }
+            });
+        }
+        //每月货架数
+        function mouthShelf(tenantId){
+            $.ajax({
+                method: 'GET',
+                url: base + 'api/v1/shelves/monthGrowthDataView',
+                data: {
+                    tenantId:tenantId
+                },
+                dataType: 'json',
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("client_type", "dataView");
+                },
+                success: function (res) {
+                    var monthNum = [];
+                    var num = [];
+                    var list = [];
+                    for(var i=0;i<res.body.dataView.length;i++){
+                        var month = res.body.dataView[i].month;
+                        var monthNumL = month.replace(/\b(0+)/gi,"") + '月';
+                        var numL = res.body.dataView[i].amount;
+                        var aa = res.body.dataView[i].amount/res.body.totalAmount;
+                        monthNum.push(monthNumL);
+                        num.push(numL);
+                        list.push(aa);
+                    }
+                    numberBar.hideLoading();
+                    // 填入数据
+                    numberBar.setOption({
+                        yAxis: {
+                            data:monthNum
+                        },
+                        series: [{
+                            type: 'bar',
+                            label: {
+                                normal: {
+                                    formatter:
+                                        function (param) {
+                                            return num[param.dataIndex] + '个';
+                                            },
+                                }
+                            },
+                            data: [1,1,1,1,1,1,1,1,1,1,1,1],
+                        }, {
+                            type: 'bar',
+                            data: list,
+                        }]
+                    });
+                },
+            });
+        }
+        //每周货架数
+        function weekShelf(tenantId,mouth){
+            $.ajax({
+                method: 'GET',
+                url: base + 'api/v1/shelves/weekGrowthDataView',
+                data: {
+                    tenantId:tenantId,
+                    month:mouth
+                },
+                dataType: 'json',
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("client_type", "dataView");
+                },
+                success: function (res) {
+                    // console.log(res)
+
+                    var weekNum = [];
+                    var weekShelf = [];
+                    for(var i=0;i<res.body.length;i++){
+
+                        var week = '第' + toChinese(res.body[i].week) + '周';
+                        // var weekL = week.replace(/\b(0+)/gi,"") + '周';
+                        var shelfNum = {value:res.body[i].amount,name:week};
+                        weekNum.push(week)
+                        weekShelf.push({value:res.body[i].amount,name:week})
+                    }
+                    // console.log(weekNum)
+                    // console.log(weekShelf)
+                    // 填入数据
+                    numberPie.setOption({
+                        legend: {
+                            data:weekNum,
+                        },
+                        // color:['#fecd5d','#ff5599','#25d096','#4089ff','#0ae1f4'],
+                        // color:['red','#fecd5d','#ff5599','#25d096','#4089ff','gray'],
+                        series : [
+                            {
+                                type: 'pie',
+                                data:weekShelf,
+                            }
+                        ]
+                    });
+
+
+                },
+
+
+
+
+
+            });
+        }
+        //每周货架数
+        function weekMoney(tenantId,mouth){
+            $.ajax({
+                method: 'GET',
+                url: base + 'api/v1/trade/weekAmountGrowthDataView',
+                data: {
+                    tenantId:tenantId,
+                    month:mouth
+                },
+                dataType: 'json',
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("client_type", "dataView");
+                },
+                success: function (res) {
+                    // console.log(res)
+
+                    var weekNum = [];
+                    var weekMoney = [];
+                    for(var i=0;i<res.body.length;i++){
+
+                        var week = '第' + toChinese(res.body[i].week) + '周';
+                        // var weekL = week.replace(/\b(0+)/gi,"") + '周';
+                        weekNum.push(week)
+                        weekMoney.push({value:res.body[i].totalAmount,name:week})
+                    }
+                    // 填入数据
+                    moneyPie.setOption({
+                        legend: {
+                            data:weekNum,
+                        },
+                        // color:['#fecd5d','#ff5599','#25d096','#4089ff','#0ae1f4'],
+                        // color:['red','#fecd5d','#ff5599','#25d096','#4089ff','gray'],
+                        series : [
+                            {
+                                type: 'pie',
+                                data:weekMoney,
+                            }
+                        ]
+                    });
+
+
+                },
+
+
+            });
+        }
+        //每周订单数
+        function weekOrder(tenantId,mouth){
+            $.ajax({
+                method: 'GET',
+                url: base + 'api/v1/trade/weekGrowthDataView',
+                data: {
+                    tenantId:tenantId,
+                    month:mouth
+                },
+                dataType: 'json',
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("client_type", "dataView");
+                },
+                success: function (res) {
+                    // console.log(res)
+
+                    var weekNum = [];
+                    var weekOrder = [];
+                    for(var i=0;i<res.body.length;i++){
+
+                        var week = '第' + toChinese(res.body[i].week) + '周';
+                        weekNum.push(week)
+                        weekOrder.push({value:res.body[i].amount,name:week})
+                    }
+                    // 填入数据
+                    orderPie.setOption({
+                        legend: {
+                            data:weekNum,
+                        },
+                        // color:['#fecd5d','#ff5599','#25d096','#4089ff','#0ae1f4'],
+                        // color:['red','#fecd5d','#ff5599','#25d096','#4089ff','gray'],
+                        series : [
+                            {
+                                type: 'pie',
+                                data:weekOrder,
+                            }
+                        ]
+                    });
+
+
+                },
+
+
+
+
+
+            });
+        }
+
+        $(document).on('click','.brand_list li',function () {
+            var tenantId = $(this).attr('data-id');
+            $(this).addClass('active').siblings().removeClass('active');
+            sum(tenantId);
+            mouthShelf(tenantId);
+            weekShelf(tenantId,parseInt(month+1));
+            weekMoney(tenantId,parseInt(month+1));
+            weekOrder(tenantId,parseInt(month+1));
+        });
+
+        //左侧排名列表
+        $.ajax({
+            method: 'GET',
+            url: base + 'api/v1/shelves/getTenantByShelvesMore',
+            data:'',
+            dataType: 'json',
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("client_type", "dataView");
+            },
+            success: function (res) {
+                // console.log(res)
+                var list = res.body
+                var str = '';
+                str += '<li><a href="/bigData/home/index.html" class="brandBaseColor"><i class="iconfont iconfanhui f24"></i>返回首页</a></li>';
+                for(let i=0;i<list.length;i++){
+                    if(i==0){
+                        str += '<li class="active" data-id="'+ list[i].tenantId +'"><img src="/bigData/images/brand/first.png" />'+ list[i].tenantName +'</li>'
+                    }else if(i==1){
+                        str += '<li data-id="'+ list[i].tenantId +'"><img src="/bigData/images/brand/second.png" />'+ list[i].tenantName +'</li>'
+                    }else if(i==2){
+                        str += '<li data-id="'+ list[i].tenantId +'"><img src="/bigData/images/brand/third.png" />'+ list[i].tenantName +'</li>'
+                    }else{
+                        str += '<li data-id="'+ list[i].tenantId +'">'+ list[i].tenantName +'</li>'
+                    }
+                }
+                $('.brand_list').html(str);
+                sum(list[0].tenantId);
+                mouthShelf(list[0].tenantId);
+                weekShelf(list[0].tenantId,parseInt(month+1));
+                weekOrder(list[0].tenantId,parseInt(month+1));
+                // weekShelf(list[0].tenantId,6);
+                weekMoney(list[0].tenantId,parseInt(month+1));
+            }
+        });
+
+        //每月货架数图表初始化
+        var numberBarOption = {
+            grid: {
+                left: '40',
+                right: '50',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 0
+            },
+            xAxis: {
+                show: false,
+            },
+            yAxis: {
+                type: 'category',
+                show: true,
+                axisLabel: {
+                    margin: 10,
+                    show: true,
+                    textStyle:{
+                        color:function(value,index){
+                            if(index == month){
+                                return '#fff'
+                            }else{
+                                return '#4a5a7f'
+                            }
+                        },
+                    },
+
+                    fontSize: 14
+                },
+                axisTick: {
+                    show: true,
+                },
+                axisLine: {
+                    show: false,
+                },
+                data: []
+            },
+            series: [{
+                type: 'bar',
+                barGap: '-100%',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'right',
+                        color: '#4a5a7f',
+                        fontSize: 14,
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        barBorderRadius:[20],
+                        borderColor: 'transparent',
+                        borderWidth: 0,
+                        // color: '#122548'
+
+                        color:function (params) {
+                            // console.log(params.dataIndex)
+                            if(params.dataIndex == month){
+                                return '#1a223e'
+                            }else{
+                                return '#122548'
+                            }
+                        }
+                    },
+                },
+                barWidth: 10,
+                z: 1,
+                data: [],
+            }, {
+                type: 'bar',
+                barGap: '-100%',
+                barWidth: 10,
+                itemStyle: {
+                    normal: {
+                        barBorderRadius:[20],
+                        // color: '#293f73',
+                        color:function (params) {
+                            // console.log(params.dataIndex)
+                            if(params.dataIndex == month){
+                                return '#f34d4e'
+                            }else{
+                                return '#293f73'
+                            }
+                        }
+                    },
+                },
+
+                max: 1,
+                labelLine: {
+                    show: false,
+                },
+                z: 2,
+                data: [],
+            }]
+        };
+
+        var numberBar = echarts.init(document.getElementById('numberBar'));
+        numberBar.setOption(numberBarOption);
+        numberBar.showLoading();
+        numberBar.on('click', function (params) {
+            var curInt = params.dataIndex;
+            numberBar.setOption({
+                yAxis : [
+                    {
+                        axisLabel: {
+                            textStyle: {
+                                color: function(value, index) {
+                                    return index == params.dataIndex ? '#fff': '#293f73';
+                                },
+                            }
+                        }
+                    }
+                ],
+                series: [{
+                },{
+                    itemStyle: {
+                        color: function(params) {
+                            var key = params.dataIndex;
+                            if (key === curInt) {
+                                return '#f34d4e';
+                            }else{
+                                return '#293f73'
+                            }
+                        }
+                    },
+                }],
+            });
+            var tenantId = $('.brand_list').find('.active').attr('data-id');
+            weekShelf(tenantId,parseInt(params.dataIndex+1))
+        });
+
+        //每周货架数图表初始化
+        var numberPieOption = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b} : {c}个 ({d}%)"
+            },
+            legend: {
+                itemWidth: 10,
+                icon: "circle",
+                orient: 'vertical',
+                right: 10,
+                bottom: 10,
+                // data: ['第一周', '第二周','第三周','第四周'],
+                data:[],
+                textStyle:{
+                    color:'#4a5a7f'
+                }
+            },
+            color:['#fecd5d','#ff5599','#25d096','#4089ff','#0ae1f4','#ba42ff'],
+            series : [
+                {
+                    type: 'pie',
+                    radius: ['36%', '70%'],
+                    position: 'outside',
+                    avoidLabelOverlap: false,
+                    center: ['50%', '50%'],
+                    selectedMode: 'single',
+                    labelLine: {
+                        normal: {
+                            length: 20,
+                            length2: 50,
+                            lineStyle: {
+                                // color: '#333'
+                            }
+                        }
+
+                    },
+                    label: {
+                        normal: {
+                            // \n\n可让文字居于牵引线上方，很关键
+                            //  {b}  代表显示的内容标题
+                            // {c}代表数据
+                            formatter: ' {c}个 \n\n',
+
+                            borderWidth: 20,
+                            borderRadius: 4,
+                            padding: [0, -40],
+                            rich: {
+                                a: {
+                                    color: '#333',
+                                    fontSize: 16,
+                                    lineHeight: 20
+                                },
+                                b: {
+                                    fontSize: 16,
+                                    lineHeight: 20,
+                                    color: '#333'
+                                }
+                            }
+                        }
+                    },
+                    // data:[
+                    //     {value:1,name: '第一周'},
+                    //     {value:2, name: '第二周'},
+                    //     {value:6, name: '第三周'},
+                    //     {value:4, name: '第四周'}
+                    // ],
+                    data:[],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        var numberPie = echarts.init(document.getElementById('numberPie'));
+        numberPie.setOption(numberPieOption);
+        // numberPie.showLoading();
+
+        //每月销售额图表初始化
+        var moneyBarOption = {
+            color: ['#3398DB'],
+            tooltip : {
+                trigger: 'axis',
+                backgroundColor : '#fff',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+                },
+                padding:10,
+                lineHeight:50,
+                textStyle : {
+                    color: '#8691aa',
+                    decoration: 'underline',
+                    fontSize: 14,
+                },
+                formatter: year+"/{b} <br/>{c}元",
+            },
+            grid: {
+                left: '0',
+                right: '0',
+                bottom: '0',
+                top:'20',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    axisLine: {
+                        lineStyle: {
+                            color: '#c6d0d8'
+                        }
+                    },
+                    type : 'category',
+                    data : ['1月', '2月', '3月', '4月', '5月', '6月', '7月','8月','9月','10月','11月','12月'],
+                    axisTick: {
+                        alignWithLabel: true,
+                        show: false
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    //y轴颜色
+                    axisLine: {
+                        lineStyle: {
+                            color: '#07162e'
+                        }
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#c6d0d8',//坐标值得具体的颜色
+
+                        }
+                    },
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售额',
+                    type:'bar',
+                    barWidth: '60%',
+                    data:[],
+                    itemStyle: {
+                        normal: {
+                            // color: '#29456f',
+                            color:function (params) {
+                                // console.log(params.dataIndex)
+                                if(params.dataIndex == month){
+                                    return '#7bb0ff'
+                                }else{
+                                    return '#29456f'
+                                }
+                            }
+                        }
+                    }
+
+                },
+
+
+                // {
+                //     name:'折线',
+                //     type:'line',
+                //     color: '#0febff',
+                //     symbol: 'circle',
+                //     symbolSize: 12,//拐点大小
+                //     // 折线颜色
+                //     itemStyle: {
+                //         normal: {
+                //             color: '#7bb0ff',
+                //             borderWidth: 3,
+                //             borderColor: '#fff',
+                //             lineStyle: {
+                //                 color: '#0febff',
+                //             },
+                //
+                //         }
+                //     },
+                //     data:[10, 52, 200, 334, 390, 330, 220,560,452,20,123,523]
+                // }
+            ]
+        };
+        var moneyBar = echarts.init(document.getElementById('moneyBar'));
+        moneyBar.setOption(moneyBarOption);
+        moneyBar.on('click', function (params) {
+            // console.log(params.dataIndex)
+            var curInt = params.dataIndex;
+            moneyBar.setOption({
+                series: [{
+                    itemStyle: {
+                        color: function(params) {
+                            var key = params.dataIndex;
+                            if (key === curInt) {
+                                return '#7bb0ff';
+                            }else{
+                                return '#29456f'
+                            }
+                        }
+                    }
+                }],
+            });
+            var tenantId = $('.brand_list').find('.active').attr('data-id');
+            weekMoney(tenantId,parseInt(params.dataIndex+1))
+        });
+        moneyBar.showLoading();
+        //每周销售额图表初始化
+        var moneyPieOption = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b} : {c}元 ({d}%)"
+            },
+            legend: {
+                itemWidth: 10,
+                icon: "circle",
+                orient: 'vertical',
+                right: 10,
+                bottom: 10,
+                data: [],
+                textStyle:{
+                    color:'#4a5a7f'
+                }
+            },
+            color:['#fecd5d','#ff5599','#25d096','#4089ff','red'],
+            series : [
+                {
+                    type: 'pie',
+                    radius: ['36%', '70%'],
+                    position: 'outside',
+                    avoidLabelOverlap: false,
+                    center: ['50%', '50%'],
+                    selectedMode: 'single',
+                    labelLine: {
+                        normal: {
+                            length: 20,
+                            length2: 50,
+                            lineStyle: {
+                                // color: '#333'
+                            }
+                        }
+
+                    },
+                    label: {
+                        normal: {
+                            // \n\n可让文字居于牵引线上方，很关键
+                            //  {b}  代表显示的内容标题
+                            // {c}代表数据
+                            formatter: ' {c}元 \n\n',
+
+                            borderWidth: 20,
+                            borderRadius: 4,
+                            padding: [0, -40],
+                            rich: {
+                                a: {
+                                    color: '#333',
+                                    fontSize: 16,
+                                    lineHeight: 20
+                                },
+                                b: {
+                                    fontSize: 16,
+                                    lineHeight: 20,
+                                    color: '#333'
+                                }
+                            }
+                        }
+                    },
+                    data:[],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        var moneyPie = echarts.init(document.getElementById('moneyPie'));
+        moneyPie.setOption(moneyPieOption);
+
+
+        //每月订单数图表初始化
+        var orderBarOption = {
+            grid: {
+                left: '60',
+                right: '50',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 0
+            },
+            xAxis: {
+                show: false,
+            },
+            yAxis: {
+                type: 'category',
+                show: true,
+                axisLabel: {
+                    margin: 10,
+                    show: true,
+                    textStyle:{
+                        color:function(value,index){
+                            if(index == month){
+                                return '#fff'
+                            }else{
+                                return '#4a5a7f'
+                            }
+                        },
+                    },
+                    fontSize: 14
+                },
+                axisTick: {
+                    show: true,
+                },
+                axisLine: {
+                    show: false,
+                },
+                data: []
+            },
+            series: [{
+                type: 'bar',
+                barGap: '-100%',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'right',
+                        color: '#4a5a7f',
+                        fontSize: 14,
+                        formatter:
+                            function (param) {
+                                return data.visits[param.dataIndex] + '个';
+                            },
+                    }
+                },
+                barWidth: 10,
+                itemStyle: {
+
+                    normal: {
+                        barBorderRadius:[20],
+                        color: '#0f2548'
+                    },
+                },
+                z: 1,
+                data: [],
+            }, {
+                type: 'bar',
+                barGap: '-100%',
+                barWidth: 10,
+                itemStyle: {
+
+                    normal: {
+                        barBorderRadius:[20],
+                        // color: '#29456f',
+                        color:function (params) {
+                            // console.log(params.dataIndex)
+                            if(params.dataIndex == month){
+                                return '#f34d4e'
+                            }else{
+                                return '#29456f'
+                            }
+                        }
+                    }
+                },
+                max: 1,
+                labelLine: {
+                    show: false,
+                },
+                z: 2,
+                data: [],
+            }]
+        };
+        var orderBar = echarts.init(document.getElementById('orderBar'));
+        orderBar.setOption(orderBarOption);
+        orderBar.showLoading();
+        orderBar.on('click', function (params) {
+            // console.log(params.dataIndex)
+            var curInt = params.dataIndex;
+            orderBar.setOption({
+                yAxis : [
+                    {
+                        axisLabel: {
+                            textStyle: {
+                                color: function(value, index) {
+                                    return index == params.dataIndex ? '#fff': '#293f73';
+                                },
+                            }
+                        }
+                    }
+                ],
+                series: [{
+                },{
+                    itemStyle: {
+                        color: function(params) {
+                            var key = params.dataIndex;
+                            if (key === curInt) {
+                                return '#f34d4e';
+                            }else{
+                                return '#293f73'
+                            }
+                        }
+                    },
+                }],
+            });
+            var tenantId = $('.brand_list').find('.active').attr('data-id');
+            weekOrder(tenantId,parseInt(params.dataIndex+1))
+        });
+        //每周订单数图表初始化
+        var orderPieOption = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b} : {c}单 ({d}%)"
+            },
+            legend: {
+                itemWidth: 10,
+                icon: "circle",
+                orient: 'vertical',
+                right: 10,
+                bottom: 10,
+                data: [],
+                textStyle:{
+                    color:'#4a5a7f'
+                }
+            },
+            color:['#fecd5d','#ff5599','#25d096','#4089ff','#0ae1f4','#ba42ff'],
+            series : [
+                {
+                    type: 'pie',
+                    radius: ['36%', '70%'],
+                    position: 'outside',
+                    avoidLabelOverlap: false,
+                    center: ['50%', '50%'],
+                    selectedMode: 'single',
+                    labelLine: {
+                        normal: {
+                            length: 20,
+                            length2: 50,
+                            lineStyle: {
+                                // color: '#333'
+                            }
+                        }
+
+                    },
+                    label: {
+                        normal: {
+                            // \n\n可让文字居于牵引线上方，很关键
+                            //  {b}  代表显示的内容标题
+                            // {c}代表数据
+                            formatter: ' {c}单 \n\n',
+
+                            borderWidth: 20,
+                            borderRadius: 4,
+                            padding: [0, -40],
+                            rich: {
+                                a: {
+                                    color: '#333',
+                                    fontSize: 16,
+                                    lineHeight: 20
+                                },
+                                b: {
+                                    fontSize: 16,
+                                    lineHeight: 20,
+                                    color: '#333'
+                                }
+                            }
+                        }
+                    },
+                    data:[],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        var orderPie = echarts.init(document.getElementById('orderPie'));
+        orderPie.setOption(orderPieOption);
+        window.onresize = function(){
+            numberBar.resize();
+            numberPie.resize();
+            moneyBar.resize();
+            moneyPie.resize();
+            orderBar.resize();
+            orderPie.resize();
+        }
+        $("#mobile-nav-taggle,.mask").click(function () {
+            var mobileMenu = $("#mobile-menu");
+            if (mobileMenu.hasClass("show-nav")) {
+                mobileMenu.addClass("hide-nav").removeClass("show-nav");
+                // $('.nav-btn').css({'left':'0','right':'auto','background':'#373737'});
+                setTimeout(function () {
+                    $('.mask').css({'display':'none'});
+                },500)
+            }
+            else {
+                mobileMenu.addClass("show-nav").removeClass("hide-nav");
+                // $('.nav-btn').css({'left':'auto','right':'32%','background':'#373737'});
+                $('.mask').css({'display':'block'});
+            }
+        });
+        $(document).on('click','#mobile-menu ul li',function () {
+            $("#mobile-menu").addClass("hide-nav").removeClass("show-nav");
+            $('.nav-btn').css({'left':'0','right':'auto','background':'rgba(0,0,0,.55)'});
+            setTimeout(function () {
+                $('.mask').css({'display':'none'});
+            },1000);
+        });
+    });
+</script>
+</body>
+</html>
+

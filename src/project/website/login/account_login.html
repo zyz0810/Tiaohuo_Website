@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>来一架-登录</title>
+    @import "../include/header.inc";
+    <style>
+        body,html{
+            height:100%;
+        }
+    </style>
+</head>
+<body class="login bg">
+<div class="container-fluid top">
+    <a href="/website/home/index.html"><img src="/website/images/static/login/logo.png" /></a>
+</div>
+<div class="main-cont-wrap login-model">
+    <form action="" id="loginForm" method="" novalidate="novalidate">
+        <div class="form-title g-mb40">
+            <span class="baseColor f20">登录</span>
+            <p class="f-fr"><a class="gray01 f14" href="register.html">注册</a>
+                <img alt="" src="/website/images/static/login/arrow.png">
+            </p>
+        </div>
+        <div class="ui-form-item g-mb30">
+            <span class="ui-form-txt">登录账号</span>
+            <span class="s-fc-gy4 s-fs14 ui-area-num">
+                +<span class="js-area-num">86</span>
+            </span>
+            <img class="ui-arrow-select js-arrow-select" alt="" src="/website/images/static/login/arrow_select.png">
+            <input class="ui-form-input ui-form-input-phone" id="account_username" name="phone" placeholder="注册时填写的手机号" type="number" maxlength="11">
+            <ul class="ui-select-list js-select-list">
+                <li data-val="1" data-area="86">中国大陆 +86</li>
+                <li data-val="2" data-area="886">中国台湾 +886</li>
+                <li data-val="3" data-area="852">中国香港 +852</li>
+                <li data-val="4" data-area="853">中国澳门 +853</li>
+            </ul>
+        </div>
+        <div class="ui-form-item g-mb30">
+            <span class="ui-form-txt">登录密码</span>
+            <input class="ui-form-input" id="account_password" name="pwd" placeholder="请输入密码" type="password">
+        </div>
+
+        <div>
+            <!--<input class="form-checkbox" id="rememberPwd" name="rememberPwd" type="checkbox" value="true">-->
+            <a class="f-fr gray01 f12" href="/website/login/forget.html">忘记密码？</a>
+        </div>
+        <div class="ui-form-btn">
+            <input class="ui-button login-btn" style="line-height: 50px;" id="account_login_btn" onclick="account_submit()" value="登录" readonly>
+            <p class="text-center">
+                <a class="f14 baseColor" href="/website/login/login.html">短信验证码登录</a>
+            </p>
+        </div>
+        <div id="messageBox"></div>
+    </form>
+</div>
+
+<div class="container-fluid text-center bottom">CopyRight © 2010-2019 来一架All Rights Reserved皖ICP备19008267号-1 | 技术支持：来一架</div>
+@import "../include/footer.inc";
+<script type="text/javascript">
+    //选择区号
+    $(".js-arrow-select").on("click", function () {
+        var th = $(this);
+        th.toggleClass("active");
+        $(".js-select-list").stop().slideToggle();
+        $("#phone").trigger('blur');
+    });
+    $(".js-select-list li").on("click", function () {
+        var th = $(this);
+        var num = th.data("area");
+        $(".js-area-num").text(num);
+        $(".js-arrow-select").removeClass("active");
+        areaType = th.data("val");
+        $(".js-select-list").hide();
+        $("#phone").trigger('blur');
+    });
+    //账户登录提交
+    var _i = 0;
+    var login_type = "account";
+
+    // /store/user/account/login.jhtml?username=账号&enPassword=加密后的密码  post
+
+
+    function account_submit() {
+        if (_i != 0) {
+            return;
+        }
+        if ($("#account_username").val().trim() == "") {
+            //            $("#account_username").next().text("必填");
+            $.message("error", " 请填写登录账号");
+            return;
+        }
+        if ($("#account_password").val().trim() == "") {
+            //            $('#account_password').next().text("必填");
+            $.message("error", " 请填写登录密码");
+            return;
+        }
+        _i = 1;
+        $("#account_login_btn").val("正在为您跳转");
+        $.ajax({
+            url: base + "/common/public_key.jhtml",
+            type: "POST",
+            data: {local: true},
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                var rsaKey = new RSAKey();
+                rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
+                var enPassword = hex2b64(rsaKey.encrypt($("#account_password").val()));
+                $.ajax({
+                    url: base + "/store/user/account/login.jhtml",
+                    type: "POST",
+                    data: {
+                        username: $("#account_username").val(),
+                        enPassword: enPassword
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (message) {
+                        if (message.type == "success") {
+                            $.message("success", "登录成功！正在为您跳转....");
+                            setTimeout(function () {
+                                // location.href = base + "/store/member/index.jhtml";
+                                location.href = base + "website/login/tenant.html";
+                            }, 1500);
+
+                            if ($("#isRememberUsername").prop("checked")) {
+                                addCookie("memberUsername", $("#account_username").val(), {expires: 7 * 24 * 60 * 60});
+                            } else {
+                                removeCookie("memberUsername");
+                            }
+                        } else {
+                            $.message(message);
+                            _i = 0;
+                            $("#account_login_btn").val("登录");
+                        }
+                    }
+                });
+            }, complete: function (data) {
+//                console.log(data);
+            }
+        });
+    }
+
+    //按enter键登录
+    document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13) { // enter 键
+                account_submit();
+        }
+    };
+
+    //
+    <!--登录js验证-->
+    $().ready(function () {
+        $("#forget_captcha_img").click(function () {
+            //======兼容IE========//
+            $("#forget_captcha_img").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

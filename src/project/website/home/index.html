@@ -1,0 +1,917 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>来一架-智慧商业解决方案提供商</title>
+    @import "../include/header.inc";
+    <!--[if IE]>
+    <script type="text/javascript">
+        $(function () {
+            var width = $(window).width();
+            if (width > 1200) {
+                $('.case li').css({'height': '250px'});
+            } else if (width < 768 && width < 992) {
+                $('.case li').css({'height': '160px'});
+            } else if (width > 992 && width < 1200) {
+                $('.case li').css({'height': '207.5px'});
+            }
+        });
+    </script>
+    <![endif]-->
+</head>
+<body>
+<!--页面背景-->
+<div class="index_img"></div>
+<!--<img src="../images/static/home/bg.png" alt="" class="index_img"/>-->
+<div class="index_content">
+    <div class="headerHome">
+        @import "../../../model/widgets/navBar.html";
+        <div id="myCarousel" class="carousel slide">
+            <ol class="carousel-indicators" style="font-size: 0;">
+                <li data-target="#myCarousel" data-slide-to="0" class="active">
+                    <div class="wrapper right">
+                        <div class="circleProgress rightcircle"></div>
+                    </div>
+                    <div class="wrapper left">
+                        <div class="circleProgress leftcircle"></div>
+                    </div>
+                </li>
+
+                <li data-target="#myCarousel" data-slide-to="1">
+                    <div class="wrapper right">
+                        <div class="circleProgress rightcircle"></div>
+                    </div>
+                    <div class="wrapper left">
+                        <div class="circleProgress leftcircle"></div>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="/website/images/static/home/banner01.png" alt="First slide">
+                    <div class="container-fluid banner_txt">
+                        <div class="container white">
+                            <p class="f44">智能货架解决方案</p>
+                            <p class="f20">用开一家店的钱，开一千家店<br/>每一个无人货架都是一个颗粒化的店铺</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/website/images/static/home/banner02.png" alt="Second slide">
+                    <div class="container-fluid banner_txt">
+                        <div class="container white">
+                            <p class="f44">微信小程序</p>
+                            <p class="f20">快速定制，一键接入，抢占先机，开辟流量新入口</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="container-fluid white f14 notice">-->
+                <!--<div class="container">-->
+                    <!--<div class="row">-->
+                        <!--<span class="col-sm-1">最新公告</span>-->
+                        <!--<ul class="row col-sm-11 new_notice"></ul>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-pause="hover">
+        <!--<div class="container-fluid index_product">-->
+            <!--<div class="container">-->
+                <!-- Indicators -->
+                <!--<ol class="carousel-indicators f14">-->
+                    <!--<li data-target="#carousel-example-generic" data-slide-to="0" class="active technology_first">-->
+                        <!--<p class="clearfix">-->
+                            <!--<img src="/website/images/static/home/xiaochengxu.png" alt="" class="img01"/>-->
+                            <!--<img src="/website/images/static/home/xiaochengxu2.png" alt="" class="img02"/>-->
+                        <!--</p>-->
+                        <!--<p>小程序</p>-->
+                        <!--<div class="arrow"></div>-->
+                    <!--</li>-->
+                    <!--<li data-target="#carousel-example-generic" data-slide-to="1">-->
+                        <!--<p class="clearfix">-->
+                            <!--<img src="/website/images/static/home/huojia.png" alt="" class="img01"/>-->
+                            <!--<img src="/website/images/static/home/huojia2.png" alt="" class="img02"/>-->
+                        <!--</p>-->
+                        <!--<p>智能货架</p>-->
+                        <!--<div class="arrow"></div>-->
+                    <!--</li>-->
+                    <!--<li data-target="#carousel-example-generic" data-slide-to="2">-->
+                        <!--<p class="clearfix">-->
+                            <!--<img src="/website/images/static/home/yundian.png" alt="" class="img01"/>-->
+                            <!--<img src="/website/images/static/home/yundian2.png" alt="" class="img02"/>-->
+                        <!--</p>-->
+                        <!--<p>智慧云小店</p>-->
+                        <!--<div class="arrow"></div>-->
+                    <!--</li>-->
+                    <!--<li data-target="#carousel-example-generic" data-slide-to="3">-->
+                        <!--<p class="clearfix">-->
+                            <!--<img src="/website/images/static/home/liansuo.png" alt="" class="img01"/>-->
+                            <!--<img src="/website/images/static/home/liansuo2.png" alt="" class="img02"/>-->
+                        <!--</p>-->
+                        <!--<p>智慧品牌连锁店</p>-->
+                        <!--<div class="arrow"></div>-->
+                    <!--</li>-->
+                    <!--<li data-target="#carousel-example-generic" data-slide-to="4 technology_last">-->
+                        <!--<p class="clearfix">-->
+                            <!--<img src="/website/images/static/home/B2B.png" alt="" class="img01"/>-->
+                            <!--<img src="/website/images/static/home/B2B2.png" alt="" class="img02"/>-->
+                        <!--</p>-->
+                        <!--<p>B2B在线订货系统</p>-->
+                        <!--<div class="arrow"></div>-->
+                    <!--</li>-->
+                <!--</ol>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="container-fluid index_product product_content">
+            <div class="container">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item row active">
+                        <div class="anli_txt f14 col-xs-5 col-sm-5">
+                            <p class="f32">小程序</p>
+                            <p class="f22">抢占第一波红利，快速链接用户，开发新商机。</p>
+                            <p>一站式部署小程序资源套件，简化开发、提升效率；更有丰富的小程序模板，满足电商/餐饮/O2O等多场景定制化需求。</p>
+                            <p>撬动移动互联网千亿市场，抢占线上线下客流！</p>
+                            <p>联合服务商、开发者、合作伙伴，服务千万中小企业</p>
+                            <!--<p>-->
+                                    <!--<span class="try_out" style="margin-top: 6%;">-->
+                                        <!--<a href="javascript:;">免费试用</a>-->
+                                        <!--<img src="/website/images/static/home/xiaochengxu_ewm.png" alt=""/>-->
+                                    <!--</span>-->
+                                <!--<a href="/website/solution/general/miniProgram.html" class="know_more"-->
+                                   <!--style="margin-top: 6%;">了解更多</a>-->
+                            <!--</p>-->
+                        </div>
+                        <div class=" col-xs-2 col-sm-2"></div>
+                        <div class="anli_img col-xs-5 col-sm-5">
+                            <img src="/website/images/static/home/index_product01.png" alt=""/>
+                        </div>
+                    </div>
+                    <div class="item row">
+                        <div class="anli_txt f14 col-xs-5 col-sm-5">
+                            <p class="f32">智能货架</p>
+                            <p class="f22">开启智能零售新模式</p>
+                            <p>无人货架以办公消费场景领域为服务中心，应用场景多样化</p>
+                            <p>成本低、高频率、是最接近用户的流量入口，在业内市场有巨大的上升空间。</p>
+                            <!--<p>-->
+                                    <!--<span class="try_out">-->
+                                        <!--<a href="javascript:;">免费试用</a>-->
+                                        <!--<img src="/website/images/static/home/huojia_ewm.png" alt=""/>-->
+                                    <!--</span>-->
+                                <!--<a href="/website/solution/general/shelves.html" class="know_more">了解更多</a>-->
+                            <!--</p>-->
+                        </div>
+                        <div class=" col-xs-2 col-sm-2"></div>
+                        <div class="anli_img col-xs-5 col-sm-5">
+                            <img src="/website/images/static/home/index_product02.png" alt=""/>
+                        </div>
+                    </div>
+                    <!--<div class="item row">-->
+                        <!--<div class="anli_txt f14 col-xs-5 col-sm-5">-->
+                            <!--<p class="f32">智慧云小店</p>-->
+                            <!--<p class="f22">让门店更智慧</p>-->
+                            <!--<p>商城、营销、会员等一站式服务，轻松打造独立专属的在线商城。</p>-->
+                            <!--<p>-->
+                                    <!--<span class="try_out">-->
+                                        <!--<a href="javascript:;">免费试用</a>-->
+                                        <!--<img src="/website/images/static/home/yundian_ewm.png" alt=""/>-->
+                                    <!--</span>-->
+                                <!--<a href="/website/solution/general/shop.html" class="know_more">了解更多</a>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div class=" col-xs-2 col-sm-2"></div>-->
+                        <!--<div class="anli_img col-xs-5 col-sm-5">-->
+                            <!--<img src="/website/images/static/home/index_product03.png" alt=""/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="item row">-->
+                        <!--<div class="anli_txt f14 col-xs-5 col-sm-5">-->
+                            <!--<p class="f32">智慧品牌连锁店</p>-->
+                            <!--<p class="f22">连接线下服务与线上用户</p>-->
+                            <!--<p>智慧品牌连锁店以“门店+会员”为核心，优化用户体验与性能，帮助线下门店营销与服务升级</p>-->
+                            <!--<p>-->
+                                    <!--<span class="try_out">-->
+                                        <!--<a href="javascript:;">免费试用</a>-->
+                                        <!--<img src="/website/images/static/home/liansuo_ewm.png" alt=""/>-->
+                                    <!--</span>-->
+                                <!--<a href="/website/solution/general/chain.html" class="know_more">了解更多</a>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div class=" col-xs-2 col-sm-2"></div>-->
+                        <!--<div class="anli_img col-xs-5 col-sm-5">-->
+                            <!--<img src="/website/images/static/home/index_product04.png" alt=""/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="item row">-->
+                        <!--<div class="anli_txt f14 col-xs-5 col-sm-5">-->
+                            <!--<p class="f32">B2B在线订货系统</p>-->
+                            <!--<p class="f22">让供销关系更加简单透明</p>-->
+                            <!--<p>零成本搭建强大的企业移动线上B2B商城</p>-->
+                            <!--<p>让您的大企业在网上轻松地做生意，拓展批发贸易渠道</p>-->
+                            <!--<p>-->
+                                    <!--<span class="try_out">-->
+                                        <!--<a href="javascript:;">免费试用</a>-->
+                                        <!--<img src="/website/images/static/home/B2B_ewm.png" alt=""/>-->
+                                    <!--</span>-->
+                                <!--<a href="/website/solution/general/B2B.html" class="know_more">了解更多</a>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div class=" col-xs-2 col-sm-2"></div>-->
+                        <!--<div class="anli_img col-xs-5 col-sm-5">-->
+                            <!--<img src="/website/images/static/home/index_product05.png" alt=""/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid space">
+        <div class="container text-center">
+            <div class="page-column-title">服务行业</div>
+            <div class="page-column-describe">提供完备的行业解决方案</div>
+            <ul class="row industry">
+                <li class="col-sm-3 white">
+                    <img src="../images/static/home/industry01.png" alt="" class="original"/>
+                    <img src="../images/static/home/industry_01.png" alt="" class="vague collapse"/>
+                    <div class="industry_txt">
+                        <p class="f36">餐饮</p>
+                        <p class="f14">"互联网+餐饮"，线上结合线下，餐饮行业发展新模式。</p>
+                        <a href="/website/solution/industry/restaurant.html" class="f16 white">点击详情</a>
+                    </div>
+                </li>
+                <li class="col-sm-3 white mar">
+                    <img src="../images/static/home/industry02.png" alt="" class="original"/>
+                    <img src="../images/static/home/industry_02.png" alt="" class="vague collapse"/>
+                    <div class="industry_txt">
+                        <p class="f36">便利店</p>
+                        <p class="f14">面向便利店，提供在线售卖途径，增加收获量</p>
+                        <a href="/website/solution/industry/store.html" class="f16 white">点击详情</a>
+                    </div>
+                </li>
+                <li class="col-sm-3 white">
+                    <img src="../images/static/home/industry03.png" alt="" class="original"/>
+                    <img src="../images/static/home/industry_03.png" alt="" class="vague collapse"/>
+                    <div class="industry_txt">
+                        <p class="f36">鞋服</p>
+                        <p class="f14">面向实体鞋服门店，提供简单高效的门店经营策略和在线营销工具。</p>
+                        <a href="/website/solution/industry/dress.html" class="f16 white">点击详情</a>
+                    </div>
+                </li>
+                <li class="col-sm-3 white">
+                    <img src="../images/static/home/industry04.png" alt="" class="original"/>
+                    <img src="../images/static/home/industry_04.png" alt="" class="vague collapse"/>
+                    <div class="industry_txt">
+                        <p class="f36">眼镜</p>
+                        <p class="f14">利用线上门店解决眼镜店线上购物难题，吸引新客到店，提高转化率，加速品牌传播裂变。</p>
+                        <a href="/website/solution/industry/glasses.html" class="f16 white">点击详情</a>
+                    </div>
+                </li>
+                <li class="col-sm-3 white mar">
+                    <img src="../images/static/home/industry05.png" alt="" class="original"/>
+                    <img src="../images/static/home/industry_05.png" alt="" class="vague collapse"/>
+                    <div class="industry_txt">
+                        <p class="f36">综合体</p>
+                        <p class="f14">搭建渠道，线上活动与线下活动相结合，实现各大商户之间的客源相互引流。</p>
+                        <a href="/website/solution/industry/business.html" class="f16 white">点击详情</a>
+                    </div>
+                </li>
+                <li class="col-sm-3 white">
+                    <img src="../images/static/home/industry06.png" alt="" class="original"/>
+                    <img src="../images/static/home/industry_06.png" alt="" class="vague collapse"/>
+                    <div class="industry_txt">
+                        <p class="f36">微电商</p>
+                        <p class="f14">致力于为零售业提供全渠道电商解决方案，助力企业快速步入移动电商时代。</p>
+                        <a href="/website/solution/industry/microBusiness.html" class="f16 white">点击详情</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid space case">
+        <div class="container text-center">
+            <div class="page-column-title">他们都在用来一架</div>
+            <ul class="row text-left">
+                <li class="col-sm-3">
+                    <img src="../images/static/home/partner_01.png" alt=""/>
+                    <div class="case_txt text-center">
+                        <img src="../images/static/home/partner_logo01.png" alt="" class="logo"/>
+                        <p>主营：家用电器</p>
+                        <p><img src="../images/static/home/xiapu_code.png" alt="" class="ewm"/></p>
+                    </div>
+                </li>
+                <li class="col-sm-3 case_li02">
+                    <img src="../images/static/home/partner_02.png" alt=""/>
+                    <div class="case_txt text-center">
+                        <img src="../images/static/home/partner_logo02.png" alt="" class="logo"/>
+                        <p>主营：运动户外</p>
+                        <p><img src="../images/static/home/qiaodan_code.png" alt="" class="ewm"/></p>
+                    </div>
+                </li>
+                <li class="col-sm-3">
+                    <img src="../images/static/home/partner_03.png" alt=""/>
+                    <div class="case_txt text-center">
+                        <img src="../images/static/home/partner_logo03.png" alt="" class="logo"/>
+                        <p>主营：休闲零食类</p>
+                        <p><img src="../images/static/home/fei_code.png" alt="" class="ewm"/></p>
+                    </div>
+                </li>
+                <li class="col-sm-3">
+                    <img src="../images/static/home/partner_04.png" alt=""/>
+                    <div class="case_txt text-center">
+                        <img src="../images/static/home/partner_logo04.png" alt="" class="logo"/>
+                        <p>主营：精品女鞋</p>
+                        <p><img src="../images/static/home/dadong_code.png" alt="" class="ewm"/></p>
+                    </div>
+                </li>
+                <li class="col-sm-3 case_li02">
+                    <img src="../images/static/home/partner_05.png" alt=""/>
+                    <div class="case_txt text-center">
+                        <img src="../images/static/home/partner_logo05.png" alt="" class="logo"/>
+                        <p>主营：家用电器</p>
+                        <p><img src="../images/static/home/rongshida_code.png" alt="" class="ewm"/></p>
+                    </div>
+                </li>
+                <li class="col-sm-3">
+                    <img src="../images/static/home/partner_06.png" alt=""/>
+                    <div class="case_txt text-center">
+                        <img src="../images/static/home/partner_logo06.png" alt="" class="logo"/>
+                        <p>主营：眼镜</p>
+                        <p><img src="../images/static/home/guangming_code.png" alt="" class="ewm"/></p>
+                    </div>
+                </li>
+            </ul>
+            <a href="/website/case/index.html" class="f14 more_case">更多案例</a>
+        </div>
+    </div>
+
+    <div class="container-fluid space">
+        <div class="container text-center">
+            <div class="page-column-title">遍布全球全国，不断扩张的数据服务让跨域体验更流畅</div>
+            <div class="page-column-describe">覆盖范围更广，给您带来更好的服务体验</div>
+            <div style="position: relative;">
+                <img src="../images/static/home/map.png" alt=""/>
+                <div class="point-area"
+                     style="top: 19.8%; left: 22%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                    <div class="point point-shadow point-80"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 26.8%; right: 17.5%; position: absolute; width: 10%; height: 14%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name f14 bold" style="position: absolute; top: 30px; left: 50px;">北京</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                    <div class="point point-shadow point-80"></div>
+                </div>
+                <div class="point-area"
+                     style="top:40%; left: 46.8%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 43%; right: 22.4%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-70"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 53%; right: 19%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                    <div class="point point-shadow point-80"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 45%; right: 31.2%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-70"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 58%; right: 35.6%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 70%; right: 43%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                    <div class="point point-shadow point-80"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 34.8%; right: 11.7%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-70"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 73%; right: 19.6%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 77.8%; right: 31.5%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-50"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 74.3%; right: 17.6%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-70"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 71.8%; right: 10.5%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-60"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 48.7%; right: 13.5%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                    <div class="point point-shadow point-80"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 57.5%; right: 15.2%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-30"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 9%; right: 3.5%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-70"></div>
+                </div>
+
+                <div class="point-area"
+                     style="top: 47.7%; right: 10.6%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-50"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 48.5%; right: 7.5%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-70"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 48.6%; right: 5%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                    <div class="point point-shadow point-80"></div>
+                </div>
+
+                <div class="point-area"
+                     style="top: 62.8%; right: 7.2%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 57.5%; right: 5.4%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-70"></div>
+                </div>
+                <div class="point-area"
+                     style="top: 52%; right: 7.3%; position: absolute; width: 8%; height: 11%; visibility: visible; opacity: 1;">
+                    <!--<p class="point-name bold" style="position: absolute; top: 26px; left: -36px;">乌鲁木齐</p>-->
+                    <a href="javascript:void(0);" target="_blank" class="point point-dot"></a>
+                    <div class="point point-10"></div>
+                    <div class="point point-40"></div>
+                    <div class="point point-shadow point-80"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid partner_num">
+        <div class="container text-center">
+            <ul class="row white">
+                <li class="col-sm-4">
+                    <p class="f38"><span class="timer" id="count-number01" data-to="2581" data-speed="1500"></span>+</p>
+                    <p class="f20">服务商</p>
+                </li>
+                <li class="col-sm-4">
+                    <p class="f38"><span class="timer" id="count-number02" data-to="1045" data-speed="1000"></span>+</p>
+                    <p class="f20">行业类目</p>
+                </li>
+                <li class="col-sm-4">
+                    <p class="f38"><span class="timer" id="count-number03" data-to="5565" data-speed="2000"></span>+</p>
+                    <p class="f20">优质服务</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--技术支持-->
+    <div class="container-fluid space technology">
+        <div class="container text-center">
+            <div class="page-column-title">技术支持</div>
+            <div class="page-column-describe">互联网优秀技术研发团队，提供过硬的技术支持</div>
+            <ul class="row show_li show_txt">
+                <li class="col-sm-3 technology_first">
+                    <img src="/website/images/static/home/technology_01.png" alt=""/>
+                    <p class="f22">安全稳定的系统</p>
+                </li>
+                <li class="col-sm-3">
+                    <img src="/website/images/static/home/technology_02.png" alt=""/>
+                    <p class="f22">强大的安全防御</p>
+                </li>
+                <li class="col-sm-3">
+                    <img src="/website/images/static/home/technology_03.png" alt=""/>
+                    <p class="f22">高弹性灵活拓展</p>
+                </li>
+                <li class="col-sm-3 technology_last">
+                    <img src="/website/images/static/home/technology_04.png" alt=""/>
+                    <p class="f22">多服务器均衡运行</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--服务支持-->
+    <div class="container-fluid space technology service">
+        <div class="container text-center">
+            <div class="page-column-title">服务支持</div>
+            <div class="page-column-describe">一站式服务支持，解决所有难题</div>
+            <ul class="row show_li show_txt service_li">
+                <li class="col-sm-3 technology_first">
+                    <img src="/website/images/static/home/service_01.png" alt=""/>
+                    <p class="f22">服务指导</p>
+                </li>
+                <li class="col-sm-3">
+                    <img src="/website/images/static/home/service_02.png" alt=""/>
+                    <p class="f22">运营培训</p>
+                </li>
+                <li class="col-sm-3 technology_last">
+                    <img src="/website/images/static/home/service_03.png" alt=""/>
+                    <p class="f22">流量支持</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--战略合作-->
+    <div class="container-fluid space technology" style="padding-bottom: 0;">
+        <div class="container text-center">
+            <div class="page-column-title">战略合作</div>
+            <div class="page-column-describe">新零售赋能战略合作伙伴</div>
+            <ul class="row">
+                <li class="col-sm-5 col-xs-5 technology_first">
+                    <img src="/website/images/static/home/strategy01.png" alt=""/>
+                </li>
+                <li class="col-sm-5 col-xs-5 col-sm-offset-2 col-xs-offset-2">
+                    <img src="/website/images/static/home/strategy02.png" alt=""/>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--来一架动态-->
+    <!--<div class="container-fluid space new">-->
+        <!--<div class="container">-->
+            <!--<p class="f32">来一架新动态</p>-->
+            <!--<div class="row f12">-->
+                <!--<ul class="col-sm-4 new_ul01">-->
+                    <!--<li class="news_logo"><img src="/website/images/static/home/news_logo01.png" alt=""/></li>-->
+                <!--</ul>-->
+                <!--<ul class="col-sm-4 new_ul02">-->
+                    <!--<li class="news_logo"><img src="/website/images/static/home/news_logo02.png" alt=""/></li>-->
+                <!--</ul>-->
+                <!--<ul class="col-sm-4 new_ul03">-->
+                    <!--<li class="news_logo"><img src="/website/images/static/home/news_logo03.png" alt=""/></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="container-fluid bg space load">-->
+        <!--<div class="container">-->
+            <!--<div class="page-column-title" style="margin-bottom: 30px;">产品下载</div>-->
+           <!--<ul class="row text-center">-->
+               <!--<li class="col-sm-3">-->
+                   <!--<img src="/website/images/static/home/load01.png"/>-->
+                   <!--<p class="f24">来一架 APP</p>-->
+                   <!--<p class="f20">IOS/Android</p>-->
+                   <!--<div class="cover">-->
+                       <!--<a href="javascript:;" class="load_btn f14">敬请期待</a>-->
+                   <!--</div>-->
+               <!--</li>-->
+               <!--<li class="col-sm-3">-->
+                   <!--<img src="/website/images/static/home/load02.png"/>-->
+                   <!--<p class="f24">wins ERP</p>-->
+                   <!--<p class="f20">PC windows</p>-->
+                   <!--<div class="cover">-->
+                       <!--<a href="javascript:;" class="load_btn f14">敬请期待</a>-->
+                   <!--</div>-->
+               <!--</li>-->
+               <!--<li class="col-sm-3">-->
+                   <!--<img src="/website/images/static/home/load03.png"/>-->
+                   <!--<p class="f24">平板 ERP</p>-->
+                   <!--<p class="f20">Android平板电脑</p>-->
+                   <!--<div class="cover">-->
+                       <!--<a href="javascript:;" class="load_btn f14">敬请期待</a>-->
+                   <!--</div>-->
+               <!--</li>-->
+               <!--<li class="col-sm-3">-->
+                   <!--<img src="/website/images/static/home/load04.png"/>-->
+                   <!--<p class="f24">来一架 APP</p>-->
+                   <!--<p class="f20">IOS/Android</p>-->
+                   <!--<div class="cover">-->
+                       <!--<a href="javascript:;" class="load_btn f14">敬请期待</a>-->
+                   <!--</div>-->
+               <!--</li>-->
+           <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="container-fluid space register white text-center">
+        <div class="cont f36">
+            <span class="fl">立即注册即可体验最火小程序</span>
+            <a href="/website/login/register.html" class="white f18 fl">立即注册</a>
+        </div>
+    </div>
+    @import "../../../model/widgets/bottomBar.html";
+</div>
+@import "../include/footer.inc";
+<script type="text/javascript">
+    $(function () {
+        //他们都在用来一架高度
+//         setTimeout(function(){
+//             $('.case li>img').css({'height':'auto !important'});
+//             var heig = $('.case .row .col-sm-3').find('img').height() * 2;
+////             $('.case .row li').each(function(){
+////                 $(this).css({'height': heig+'px','padding-top':'0'});
+////                 console.log($(this));
+////             });
+//
+//             $('.case .row li').css({'height': heig+'px','padding-top':'0'});
+//         },800);
+
+
+        //下载
+        // $(document).on('mouseover','.load ul li',function(){
+        //    $(this).find('.cover').css({'display':'block'});
+        // });
+        // $(document).on('mouseout','.load ul li',function(){
+        //     $(this).find('.cover').css({'display':'none'});
+        // });
+
+        $('.index_img').html('<img src="/website/images/static/home/bg.png" alt=""/>');
+
+        //顶部轮播（鼠标指向）
+        // $('#carousel-example-generic .carousel-indicators>li').mouseenter(function () {
+        //     $('#carousel-example-generic').carousel($(this).index());
+        //     $("#carousel-example-generic").carousel('pause');
+        // });
+        // $('#carousel-example-generic .carousel-inner').mouseenter(function () {
+        //     $("#carousel-example-generic").carousel('pause');
+        // });
+        // $('#carousel-example-generic .carousel-inner').mouseleave(function () {
+        //     $("#carousel-example-generic").carousel();
+        // });
+        // $('#carousel-example-generic .carousel-indicators>li').mouseleave(function () {
+        //     $("#carousel-example-generic").carousel();
+        // });
+
+        $("#myCarousel").carousel({
+            pause: null,
+            interval: 5100
+        });
+
+
+        // $(document).on('hover','#carousel-example-generic .try_out',function(){
+        //     $("#carousel-example-generic").carousel('pause');
+        // });
+
+
+        $(document).on('mouseover', '.industry li', function () {
+            $(this).find('.original').addClass('collapse');
+            $(this).find('.vague').removeClass('collapse');
+        });
+        $(document).on('mouseout', '.industry li', function () {
+            $(this).find('.original').removeClass('collapse');
+            $(this).find('.vague').addClass('collapse');
+        });
+
+//    数字滚动开始（窗口显示才加载）
+        var wrapTop = $(".partner_num").offset().top;
+        var istrue = true;
+        $(window).on("scroll", function () {
+            var s = $(window).scrollTop();
+            if (s > wrapTop - 500 && istrue) {
+                $(".timer").each(count);
+                function count(a) {
+                    var b = $(this);
+                    a = $.extend({},
+                            a || {},
+                            b.data("countToOptions") || {});
+                    b.countTo(a)
+                }
+
+                istrue = false;
+            }
+        });
+        //设置计数
+        $.fn.countTo = function (options) {
+            options = options || {};
+            return $(this).each(function () {
+                //当前元素的选项
+                var settings = $.extend({}, $.fn.countTo.defaults, {
+                    from: $(this).data('from'),
+                    to: $(this).data('to'),
+                    speed: $(this).data('speed'),
+                    refreshInterval: $(this).data('refresh-interval'),
+                    decimals: $(this).data('decimals')
+                }, options);
+                //更新值
+                var loops = Math.ceil(settings.speed / settings.refreshInterval),
+                        increment = (settings.to - settings.from) / loops;
+                //更改应用和变量
+                var self = this,
+                        $self = $(this),
+                        loopCount = 0,
+                        value = settings.from,
+                        data = $self.data('countTo') || {};
+                $self.data('countTo', data);
+                //如果有间断，找到并清除
+                if (data.interval) {
+                    clearInterval(data.interval);
+                }
+                data.interval = setInterval(updateTimer, settings.refreshInterval);
+                //初始化起始值
+                render(value);
+                function updateTimer() {
+                    value += increment;
+                    loopCount++;
+                    render(value);
+                    if (typeof(settings.onUpdate) == 'function') {
+                        settings.onUpdate.call(self, value);
+                    }
+                    if (loopCount >= loops) {
+                        //移出间隔
+                        $self.removeData('countTo');
+                        clearInterval(data.interval);
+                        value = settings.to;
+                        if (typeof(settings.onComplete) == 'function') {
+                            settings.onComplete.call(self, value);
+                        }
+                    }
+                }
+
+                function render(value) {
+                    var formattedValue = settings.formatter.call(self, value, settings);
+                    $self.html(formattedValue);
+                }
+            });
+        };
+        $.fn.countTo.defaults = {
+            from: 0,               //数字开始的值
+            to: 0,                 //数字结束的值
+            speed: 1000,           //设置步长的时间
+            refreshInterval: 100,  //隔间值
+            decimals: 0,           //显示小位数
+            formatter: formatter, //渲染之前格式化
+            onUpdate: null,        //每次更新前的回调方法
+            onComplete: null       //完成更新的回调方法
+        };
+        function formatter(value, settings) {
+            return value.toFixed(settings.decimals);
+        }
+
+        //自定义格式
+        $('#count-number01').data('countToOptions', {
+            formmatter: function (value, options) {
+                return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+            }
+        });
+        $('#count-number02').data('countToOptions', {
+            formmatter: function (value, options) {
+                return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+            }
+        });
+        $('#count-number03').data('countToOptions', {
+            formmatter: function (value, options) {
+                return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+            }
+        });
+        //定时器
+        $('.timer').each(count);
+        function count(options) {
+            var $this = $(this);
+            options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+            $this.countTo(options);
+        }
+
+//        var host = window.location.host;
+//        if(host == 'www.tiaohuo.com'){
+//            var base='http://www.tiaohuo.com/';
+//        }else{
+//            var base='http://dev.tiaohuo.com/';
+//        }
+
+        //新闻动态
+        huoquUl(1, $(".new_ul01"));
+        huoquUl(2, $(".new_ul02"));
+        huoquUl(3, $(".new_ul03"));
+        function huoquUl(num, dom) {
+            var url = base + 'store/kuaixun/list.jhtml';
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: url,
+                data: {
+                    pageNumber: num,
+                    pageSize: 5
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (msg) {
+                    if (msg.data.length > 0) {
+//                        var str = '<li class="news_logo"><img src="http://statichome.weimob.com/img/nweb/index/l9_img1.png" alt="" /></li>';
+                        for (var i = 0; i < msg.data.length; i++) {
+                            var str = ' <li><a href="/website/new/view.html?id=' + msg.data[i].id + '"><span>' + msg.data[i].createDate + '</span>' + msg.data[i].title + '</a></li>';
+                            dom.append(str);
+                        }
+                    } else {
+                        dom.remove();
+                    }
+                }
+            });
+        }
+
+        //公告
+        // notice();
+        function notice() {
+            var url = base + 'store/kuaixun/list.jhtml';
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: url,
+                data: {
+                    pageNumber: 1,
+                    pageSize: 3
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (msg) {
+                    if (msg.data.length > 0) {
+                        for (var i = 0; i < msg.data.length; i++) {
+                            var str = '<li class="col-sm-4"><a href="/website/new/view.html?id=' + msg.data[i].id + '" class="white">▪ ' + msg.data[i].title + '</a></li>';
+                            $('.new_notice').append(str);
+
+                        }
+                    } else {
+                        $('.notice').remove();
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+
+</html>

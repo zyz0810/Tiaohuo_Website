@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>来一架-注册</title>
+    @import "../include/header.inc";
+    <style>
+        body,html{
+            height:100%;
+        }
+    </style>
+    <!--[if IE]>
+    <script type="text/javascript">
+        $(function () {
+           var heigh = $(window).height();
+            if(heigh < 780)
+            $('.zhuce').css({'top':'39%','height':'600px'});
+            $('.g-mb40').css({'margin-bottom':'20px'});
+            $('.g-mb30').css({'margin-bottom':'20px'});
+        });
+    </script>
+    <![endif]-->
+</head>
+<body class="login bg">
+<div class="container-fluid top">
+<a href="/website/home/index.html"><img src="/website/images/static/login/logo.png"/></a>
+</div>
+<!--<div>-->
+    <!--<div class="main-cont-wrap reg-model zhuce">-->
+    <div class="main-cont-wrap reg-model">
+        <form action="" id="signUpForm" method="get">
+            <div class="form-title g-mb40">
+                <span class="baseColor f20">注册</span>
+                <p class="f-fr">
+                    <a class="gray01 f14" href="account_login.html">登录</a>
+                    <img alt="" src="/website/images/static/login/arrow.png">
+                </p>
+            </div>
+            <div class="ui-form-item g-mb30">
+                <span class="ui-form-txt">手机号码</span>
+                <span>+<span class="js-area-num">86</span>
+                </span><img class="ui-arrow-select js-arrow-select" alt="" src="/website/images/static/login/arrow_select.png">
+                <input class="ui-form-input ui-form-input-phone" id="phone" name="phone" placeholder="以后可以使用手机号登录"
+                       type="number" maxlength="11">
+                <ul class="ui-select-list js-select-list">
+                    <li data-val="1" data-area="86">中国大陆 +86</li>
+                    <li data-val="2" data-area="886">中国台湾 +886</li>
+                    <li data-val="3" data-area="852">中国香港 +852</li>
+                    <li data-val="4" data-area="853">中国澳门 +853</li>
+                </ul>
+            </div>
+            <!--<div class="ui-form-item g-mb30 code-box">-->
+                <!--<span class="ui-form-txt">验证码</span>-->
+                <!--<input class="ui-form-input" id="authCode" name="code" placeholder="请输入图文验证码" type="text" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="auto right" data-content="看不清？点击图片更换验证码" data-original-title="" title="">-->
+                <!--<div class="ui-code-img"><img src="http://dev.tiaohuo.com/common/captcha.jhtml?captchaId=${captchaId}&amp;date=1517369667222" class="img-code" title="换一换" id="imgAuthCode"></div>-->
+            <!--</div>-->
+            <div class="ui-form-item g-mb30">
+                <span class="ui-form-txt">短信验证码</span>
+                <input class="ui-form-input" id="code" name="code" maxlength="6" placeholder="请填写短信验证码" type="text">
+                <div class="getcode ui-getcode baseColor" id="getPhoneCode" href="javascript:;">获取验证码</div>
+            </div>
+            <div class="ui-form-item g-mb30">
+                <span class="ui-form-txt">设置密码</span>
+                <input id="phone-copy" style="width: 1px;height: 1px;position: absolute;left: -9999px;" type="text">
+                <input class="ui-form-input1" id="pwd" name="pwd" placeholder="6～20位字符" autocomplete="new-password" type="password">
+                <a class="ui-toggle f-fr toggle" href="javascript:;" id="password" data-id="show"></a>
+            </div>
+
+            <!--<div class="ui-form-item g-mb30">-->
+                <!--<span class="ui-form-txt">门店名称</span>-->
+                <!--<input class="ui-form-input" id="form-storeName" name="code" placeholder="请输入门店名称" type="text" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="auto right" data-content="看不清？点击图片更换验证码" data-original-title="" title="">-->
+            <!--</div>-->
+            <!--<div class="ui-form-item g-mb30">-->
+                <!--<span class="ui-form-txt">企业法人</span>-->
+                <!--<input class="ui-form-input" id="form-legalPerson" name="code" placeholder="请输入法人/负责人姓名" type="text">-->
+            <!--</div>-->
+
+            <!--<div class="ui-form-item g-mb30 f-pr">-->
+                <!--<span class="ui-form-txt">地区</span>-->
+                <!--<div class="address-wrap">-->
+                    <!--&lt;!&ndash;<label for="address"></label>&ndash;&gt;-->
+                    <!--<address>-->
+                        <!--<div class="dropdown">-->
+                            <!--<div class="dropdown-toggle">-->
+                                <!--<div class="input-group" title="">-->
+                                    <!--<input type="text" class="form-control address-input city_choose" readonly="readonly" placeholder="请选择省 / 市 / 区" >-->
+                                    <!--<span class="input-group-addon address-addon">-->
+                                        <!--<i class="fa fa-caret-down down-icon"></i>-->
+                                    <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="city_choose">-->
+                                <!--<img class="ui-select" src="/website/images/static/login/arrow_down.png">-->
+                                <!--<input class="ui-form-input input-hide" id="address" name="address" type="text">-->
+                            <!--</div>-->
+                            <!--<div class="mask"></div>-->
+                            <!--<ul class="dropdown-menu address address-con" style="display: none;">-->
+                                <!--<div class="address-tab m-b-sm wrapper-sm">-->
+                                    <!--<a href="javascript:;" class="active">省</a>-->
+                                    <!--<a href="javascript:;">市</a>-->
+                                    <!--<a href="javascript:;">区</a>-->
+                                <!--</div>-->
+                                <!--<div class="row address-body" id="areaList"></div>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</address>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ui-form-item g-mb30 code-box">-->
+                <!--<span class="ui-form-txt">详细地址</span>-->
+                <!--<input class="ui-form-input" id="form-fullAddress" name="code" placeholder="请输入详细地址" type="text">-->
+            <!--</div>-->
+            <div class="ui-form-btn g-mb20">
+                <input class="ui-button" id="submit" type="button" value="确认注册" onclick="register_submit()">
+            </div>
+            <div id="messageBox"></div>
+            <div id="tcaptcha"></div>
+        </form>
+    </div>
+<!--</div>-->
+<div class="container-fluid text-center bottom">CopyRight © 2010-2019 来一架All Rights Reserved皖ICP备19008267号-1 | 技术支持：来一架</div>
+@import "../include/footer.inc";
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script type="text/javascript">
+    var selectArea = [];
+    // getArea();
+    $(function () {
+        //60秒倒计时
+        var count = 60, iiRg;
+        var areaId;
+
+        $(".ui-form-item input").focus(function(){
+            $(this).parent('.ui-form-item').css({'border-bottom':'3px solid #2589ff'});
+        });
+        $(".ui-form-item input").blur(function(){
+            $(this).parent('.ui-form-item').css({'border-bottom':'1px solid #e3e3e3'});
+        });
+
+        $('#password').click(function () {
+           if($(this).attr('data-id') == 'show'){
+               $(this).attr('data-id','hide');
+               $(this).css({'background':'url(/website/images/static/login/open.png) 0 6px no-repeat','background-size':'100% auto'});
+               $('#pwd').attr('type','text');
+           }else{
+               $(this).attr('data-id','show');
+               $(this).css({'background':'url(/website/images/static/login/close.png) 0 6px no-repeat','background-size':'100% auto'});
+               $('#pwd').attr('type','password');
+           }
+        });
+
+        function refreshTimeRg() {
+            count = count - 1;
+            if (count == 0) {
+                $("#getPhoneCode").html("重新获取");
+                count = 60;
+                clearInterval(iiRg);
+                return false;
+            }
+            $("#getPhoneCode").html(count + "s");
+        }
+
+
+
+        // var base = location.protocol + "//" + (location.host.toUpperCase() === 'LOCALHOST:8080' ? 'dev.tiaohuo.com/' : location.host + "/")
+
+
+
+
+
+
+        var areaType = 1;
+        //校验器
+        var validator = $("#signUpForm").validate({
+            rules: {
+                "phone": {
+                    required: true,
+                    isPhone: true
+                },
+                "code": {
+                    required: true
+                },
+                "pwd": {
+                    required: true,
+                    pwdStrength: true,
+                    rangelength: [6, 20]
+                }
+            },
+            messages: {
+                "phone": {
+                    required: "请输入手机号码！"
+                },
+                "code": "请输入验证码！",
+                "pwd": {
+                    required: "请输入密码！",
+                    rangelength: "请输入6～20字符！"
+                }
+            },
+            errorElement: "div",
+            errorLabelContainer: "#messageBox",
+            submitHandler: function (form) {
+                if (window.angularAddress) {
+                    $("#submit").addClass("disabled").val("注册中...").attr('disabled', 'disabled');
+                    formAjax();
+                } else {
+//                    $('#messageBox').html('地区请填写至市级别').show()
+                }
+            }
+        });
+        //手机号码校验
+        jQuery.validator.addMethod("isPhone", function (value, element) {
+            var value = $.trim(value);
+            var reg;
+            if (areaType == 1) { //大陆
+                reg = /^1[3|4|5|7|8|9][0-9]{9}$/;
+            } else if (areaType == 2) { //台湾 09开头 10位
+                reg = /^09[0-9]{8}$/;
+            } else if (areaType == 3) { //香港 5,6,8,9开头 8位
+                reg = /^[5|6|8|9][0-9]{7}$/;
+            } else if (areaType == 4) { //澳门 6开头 8位
+                reg = /^6[0-9]{7}$/;
+            }
+            return this.optional(element) || (reg.test(value));
+        }, "请输入正确的手机号码！");
+
+        //密码强度校验
+        jQuery.validator.addMethod("pwdStrength", function (value, element) {
+            if (isSimplePwd(value) < 25) {
+                return false;
+            }
+            return true
+        }, "密码过于简单，建议数字和字母的组合！");
+
+
+
+        //获取验证码
+        $(".getcode").on("click", function () {
+            var th = $(this);
+            var valid = validator.element($("#phone"));
+            var phone = $.trim($("#phone").val());
+            if (count != 60) {
+                return;
+            }
+            if (!$("#phone").val().trim()) {
+                $.message("error", " 请先填写手机号");
+                return false;
+            }
+            if (!(/^1[345789]\d{9}$/.test($("#phone").val()))) {
+                $.message("error", "手机号码不符合");
+                return;
+            }
+
+            $.ajax({
+                url: base + "/store/user/sendCaptcha.jhtml",
+                data: {
+                    mobile: $("#phone").val()
+                },
+                dataType: "json",
+                type: "post",
+                success: function (data) {
+                    $.message(data.type, data.content);
+                    if (data.type == 'error') {
+                        //======兼容IE========//
+                        $("#imgAuthCode").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+                    } else if (data.type == 'success') {
+                        iiRg = setInterval(refreshTimeRg, 1 * 1000);
+                        $("#getPhoneCode").html(count + "s");
+                    }
+                }
+            });
+        });
+
+        //选择区号
+        $(".js-arrow-select").on("click", function () {
+            var th = $(this);
+            th.toggleClass("active");
+            $(".js-select-list").stop().slideToggle();
+            $("#phone").trigger('blur');
+        });
+        $(".js-select-list li").on("click", function () {
+            var th = $(this);
+            var num = th.data("area");
+            $(".js-area-num").text(num);
+            $(".js-arrow-select").removeClass("active");
+            areaType = th.data("val");
+            $(".js-select-list").hide();
+            $("#phone").trigger('blur');
+        });
+
+
+
+        //密码强度
+        function isSimplePwd(pass) {
+            var score = 0;
+            if (!pass)
+                return score;
+            var letters = new Object();
+            for (var i = 0; i < pass.length; i++) {
+                letters[pass[i]] = (letters[pass[i]] || 0) + 1;
+                score += 5.0 / letters[pass[i]];
+            }
+            var variations = {
+                digits: /\d/.test(pass),
+                lower: /[a-z]/.test(pass),
+                upper: /[A-Z]/.test(pass),
+                nonWords: /\W/.test(pass),
+            }
+            variationCount = 0;
+            for (var check in variations) {
+                variationCount += (variations[check] == true) ? 1 : 0;
+            }
+            score += (variationCount - 1) * 10;
+            return parseInt(score);
+        }
+
+        //请求验证码
+        function getCodeAjax(data) {
+            $('#phone-copy').val(data.phone);
+            $.ajax({
+                url: base+"store/register/send.jhtml",
+                method: "post",
+                data: data,
+                dataType: 'json',
+                success: function (res) {
+                    if (res.errcode == '0') {
+                        timeCounter(60);
+                    } else {
+                        $('#messageBox').html(res.errmsg || '网络异常，请稍后重试').show()
+                    }
+                },
+                error: function () {
+                    $('#messageBox').html('网络异常，请稍后重试').show()
+                }
+            })
+        }
+
+        //倒计时
+        function timeCounter(time) {
+            var obj = $(".getcode");
+            if (!obj.hasClass("disabled")) {
+                obj.addClass("disabled");
+                obj.text(time + "s");
+                var timer = setInterval(function () {
+                    time--;
+                    if (time > 0) {
+                        obj.text(time + "s");
+                    } else {
+                        clearInterval(timer);
+                        obj.removeClass("disabled");
+                        obj.text("获取验证码");
+                    }
+                }, 1000);
+            }
+        }
+
+        //按enter键登录
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) { // enter 键
+                register_submit()
+            }
+        };
+
+
+        //=====验证码切换=======//
+
+        $("#imgAuthCode").click(function () {
+            //======兼容IE========//
+            $("#imgAuthCode").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+        });
+
+
+
+
+    })
+    //======注册提交======//
+    function register_submit() {
+        // $("#submit").click(function () {
+        var _npassword = $("#pwd").val().trim();
+        if ($("#phone").val().trim() == '') {
+            $.message("error", " 请先填写手机号");
+            return false;
+        }
+        if($("#code").val().trim()==''){
+            $.message("error", " 请先填写验证码");
+            return false;
+        }
+        if (_npassword.length < 6) {
+            if(_npassword == ""){
+                $.message("warn", "请输入新密码");
+                return;
+            }else{
+                $.message("warn", "密码不得少于6位字符");
+                return;
+            }
+        }else if(_npassword.length > 20){
+            $.message("warn", "密码不得多于20位字符");
+            return;
+        }
+
+        $.ajax({
+            url: base + "/common/public_key.jhtml",
+            type: "POST",
+            data: {local: true},
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                var rsaKey = new RSAKey();
+                rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
+                var enPassword = hex2b64(rsaKey.encrypt(_npassword));
+
+                $.ajax({
+                    url: base + "/store/user/register.jhtml",
+                    type: "POST",
+                    data: {
+                        mobile: $("#phone").val().trim(),
+                        captcha: $("#code").val().trim(),
+                        enPassword: enPassword
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (message) {
+                        if (message.type == "success") {
+                            $.message("success", "注册成功！请登录后创建店铺");
+                            setTimeout(function () {
+                                location.replace('/website/login/account_login.html')
+                            }, 1500);
+                            //                            login_method("account");
+                        } else {
+                            $.message(message);
+                        }
+                    }
+                });
+            }
+        });
+        // });
+    }
+</script>
+
+</body>
+
+</html>

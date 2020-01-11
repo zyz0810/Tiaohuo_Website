@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>集团新闻</title>
+    @import "../include/header.inc";
+</head>
+<body class="new_company">
+<div class="header">
+    @import "../../../model/widgets/navBar.html";
+    <img src="/website/images/static/new/banner.png" alt=""/>
+    <div class="container-fluid">
+        <div class="container">
+            <p class="f44">集团新闻</p>
+        </div>
+    </div>
+</div>
+<div class="column-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-xs-9 new_list new_content f14">
+                <h3 class="text-center new_tit bold f24">菲小姐与来一架签订2018年度战略合作协议！</h3>
+                <div class="new_cont company_intro f16">
+                    <img src="/website/images/static/about/company_news.png" alt="" />
+                    <p>2017年12月26日，来一架创始人黄泳阳先生与菲小姐品牌创始人吴晓菲女士，续签了2018年度合作合同。</p>
+                    <p>来一架全体员工与菲小姐品牌员工亲临签约现场，共同见证并进行了签约仪式。</p>
+                    <p>2017年，是新零售元年。创业者探路，资本先行，从新型商超、无人便利店、自动售货机到无人货架，为找到触达用户的最优路径，新零售切入的消费场景在快速演变。</p>
+                    <p>在这个大环境下，菲小姐同来一架建立了新型战略合作关系。</p>
+                    <p>双方将在小程序、商城代运营、无人货架、来一架推广上开展深层次的优势互补与合作。为打造品牌的知名度、打通线上推广途径而倾力协作。</p>
+                    <p>此次签约标志着双方建立了长期稳定的战略合作关系，也为菲小姐品牌的高速发展提供了战略化的支持。</p>
+                    <p>合肥付利购电子商务有限公司旗下的来一架，是以异业联盟共融互通方式，联合本地商家向顾客提供跨渠道、跨行业的无缝化全渠道购物体验平台。</p>
+                    <p>菲小姐的店成立于2012年。专门从事进口食品、精致网红休闲食品。三年来快速发展，百家连锁覆盖全国范围！菲小姐的店注重产品质量与服务质量，致力于带给顾客“一站式”的便捷服务。其开架的购物方式，方便顾客轻松搭配、自由选购，基本做到了每家爆满，深受消费者信任。与多家外送平台合作，并且开通了专属的线上商城，2017年向市场投入无人货架，线上购物与线下自提并存。</p>
+                    <p>菲小姐倡导健康零食新主张，吃出美味、吃出健康。菲小姐品牌在食品行业有着雄厚发展实力和光明的发展未来。</p>
+                    <p>通过此次战略合作协议签约，双方负责人均表示，今后双方将进行深度全面的合作，携手并肩，帮助菲小姐品牌实现更高的品牌效益，同时也将来一架品牌做大做强，实现共创双赢的全新局面。</p>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-3 new_right">
+                <div class="hot">
+                    <p class="news_title f16 bold">热门文章</p>
+                    <ul class="hot_circle"></ul>
+                </div>
+                <div class="search">
+                    <p class="news_title f16 bold">热门搜索</p>
+                    <div class="hot_search"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@import "../../../model/widgets/bottomBar.html";
+@import "../include/footer.inc";
+<script type="text/javascript">
+    $(function () {
+
+        //侧边栏新闻列表
+        huoquUl();
+        //热门搜索标签
+        hotSearch();
+
+
+        function huoquUl() {
+            var url = base + 'weixin/kuaixun/list.jhtml';
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: url,
+                data: {
+                    pageNumber:1,
+                    pageSize:10
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (msg) {
+                    if(msg.data.length>0){
+                        for(var i = 0; i < msg.data.length; i++) {
+                            var str = ' <li><a href="/website/new/view.html?id=' + msg.data[i].id + '"><span class="baseColor">▪</span>' + msg.data[i].title + '</a></li>';
+                            $(".hot_circle").append(str);
+                        }
+                    }else{
+                        $('.hot').remove();
+                    }
+                }
+            });
+        }
+
+        function hotSearch() {
+            var url = base + 'weixin/kuaixun/hot_search.jhtml';
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: url,
+                data: {},
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (msg) {
+                    if(msg.data.length != 0 ){
+                        var s = '';
+                        $.each(msg.data,function (i, v) {
+                            s+='<a href="/website/new/search.html?keyword=' + escape(v) + '" class="gray01">' + v + '</a>';
+                        });
+                        $('.hot_search').html(s);
+                    }else{
+                        $('.search').remove();
+                    }
+                }
+            });
+        }
+
+    })
+</script>
+</body>
+
+</html>

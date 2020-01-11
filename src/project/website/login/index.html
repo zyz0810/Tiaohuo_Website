@@ -1,0 +1,652 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录</title>
+    @import "../include/header.inc";
+</head>
+<body class="login bg">
+<div class="container-fluid top">
+    <a href="/website/home/index.html"><img src="/website/images/static/login/logo.png" /></a>
+</div>
+<div class="container-fluid space bg">
+    <div class="container">
+        <ul id="myTab" class="nav nav-tabs row text-center f28">
+            <li class=" col-sm-6"><a href="#login" data-toggle="tab">
+                登录</a>
+            </li>
+            <li class="col-sm-6"><a href="#register" data-toggle="tab">注册</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content text-center">
+
+            <div class="tab-pane fade" id="login">
+                <!--账号登录-->
+                <div class="account_num">
+                    <span class="login_mode login_phone"><img src="../images/static/login/login_phone.png"
+                                                              alt=""/></span>
+                    <h3>账号登录</h3>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入账号" aria-describedby="basic-addon1"
+                               id="account_username">
+                        <input type="password" class="form-control password" placeholder="请输入密码" id="account_password">
+                        <p class="text-right forget">忘记密码？</p>
+                    </div>
+                    <button type="button" class="btn btn-default white login_btn" onclick="account_submit()"
+                            id="account_login_btn">登录
+                    </button>
+                </div>
+                <!--手机号登录-->
+                <div class="phone_num collapse">
+                    <span class="login_mode login_account"><img src="../images/static/login/login_account.png" alt=""/></span>
+                    <h3>手机登录</h3>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入手机号" aria-describedby="basic-addon1"
+                               id="login_phone">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control password" placeholder="请输入验证码"
+                               aria-describedby="basic-addon2" id="login_captcha">
+                        <span class="input-group-addon baseColor get-btn" id="basic-addon2"
+                              onclick="get_code('phone_login')">获取验证码</span>
+                    </div>
+                    <button type="button" class="btn btn-default white login_btn " id="phone_login_btn"
+                            onclick="phone_submit()">登录
+                    </button>
+                </div>
+                <!--忘记密码-->
+                <div class="loss_password collapse">
+                    <h3>忘记密码</h3>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="forget_username" placeholder="请输入手机号">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control password" id="forget_img_captcha" placeholder="请输入图文验证码"
+                               aria-describedby="rg_authImgBtn">
+                        <img src="" class="img-code-loss" title="换一换" id="forget_captcha_img">
+                    </div>
+                    <div class="input-group" style="position: relative">
+                        <input type="text" class="form-control password" placeholder="请输入手机验证码"
+                               id="forget_phone_captcha">
+                        <span class="input-group-addon baseColor get-btn" aria-describedby="rg_authImgBtn"
+                              onclick="get_code('forget_password')">获取验证码</span>
+                    </div>
+                    <div class="input-group" style="cursor: pointer">
+                        <p class="text-right gobackLogin">返回登录</p>
+                    </div>
+
+                    <button type="button" class="btn btn-default white login_btn " id="loss_pwd_btn"
+                            onclick="go_reset()">下一步
+                    </button>
+                </div>
+
+                <div class="reset_password collapse">
+                    <h3>重置密码</h3>
+                    <div class="input-group">
+                        <input type="password" class="form-control" placeholder="请输入新密码" aria-describedby="basic-addon1"
+                               id="new_password">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" class="form-control password" placeholder="请再次输入新密码"
+                               aria-describedby="basic-addon2" id="re_new_password">
+                    </div>
+                    <div class="input-group" style="cursor: pointer">
+                        <p class="text-right gobackLogin">返回登录</p>
+                    </div>
+                    <button type="button" class="btn btn-default white login_btn" onclick="reset_password()">提交</button>
+                </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="register">
+                <h3>注册</h3>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="form-phone" placeholder="请输入手机号"
+                           data-trigger="focus" data-container="body"
+                           data-toggle="popover" data-placement="auto right"
+                           data-content="完成验证后，可以使用该手机登录和找 回密码">
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control password" id="authCode" placeholder="请输入图文验证码"
+                           aria-describedby="rg_authImgBtn"
+                           data-trigger="hover" data-container="body"
+                           data-toggle="popover" data-placement="auto right"
+                           data-content="看不清？点击图片更换验证码">
+                    <img src="" class="img-code" title="换一换" id="imgAuthCode">
+                </div>
+                <div class="input-group" style="position: relative">
+                    <input type="text" class="form-control password" placeholder="请输入手机验证码" id="phoneCode"
+                           aria-describedby="rg_authPhoneBtn" data-trigger="hover" data-container="body"
+                           data-toggle="popover" data-placement="auto right"
+                           data-content="请在60S内输入验证码，否则将验证失效">
+                    <span class="input-group-addon baseColor" id="getPhoneCode"
+                          aria-describedby="rg_authImgBtn">获取验证码</span>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="form-storeName" placeholder="请输入您的门店名称"
+                           data-trigger="focus" data-container="body"
+                           data-toggle="popover" data-placement="auto right"
+                           data-content="请输入门店名称">
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="form-legalPerson" placeholder="请输入法人/负责人姓名"
+                           data-trigger="focus" data-container="body"
+                           data-toggle="popover" data-placement="auto right"
+                           data-content="请输入法人姓名">
+                </div>
+                <div class="input-group form-item-dizhi">
+                    <p class="text-left">请选择区域及详细地址</p>
+                    <div class="item-ifo" style=";margin-top: 25px;">
+                                        <span class="fieldSet">
+                                            <input type="hidden" id="areaId" name="areaId" value="" treepath=""><select
+                                                name="areaId_select" style="margin-right: 4px;"><option
+                                                value="">请选择...</option><option value="1">北京</option><option value="18">天津</option><option
+                                                value="35">河北</option><option value="219">山西</option><option
+                                                value="351">内蒙古</option><option value="465">辽宁</option><option
+                                                value="580">吉林</option><option value="650">黑龙江</option><option
+                                                value="792">上海</option><option value="810">江苏</option><option
+                                                value="926">浙江</option><option value="1028">安徽</option><option
+                                                value="1150">福建</option><option value="1245">江西</option><option
+                                                value="1357">山东</option><option value="1515">河南</option><option
+                                                value="1692">湖北</option><option value="1809">湖南</option><option
+                                                value="1946">广东</option><option value="2089">广西</option><option
+                                                value="2213">海南</option><option value="2240">重庆</option><option
+                                                value="2279">四川</option><option value="2482">贵州</option><option
+                                                value="2580">云南</option><option value="2726">西藏</option><option
+                                                value="2807">陕西</option><option value="2925">甘肃</option><option
+                                                value="3026">青海</option><option value="3078">宁夏</option><option
+                                                value="3106">新疆</option><option value="3219">台湾</option><option
+                                                value="3292">香港</option><option value="3314">澳门</option></select>
+                                        </span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="form-fullAddress" placeholder="请输入详细地址"
+                           data-trigger="focus" data-container="body"
+                           data-toggle="popover" data-placement="auto right"
+                           data-content="完成验证后，可以使用该手机登录和找 回密码">
+                </div>
+
+                <button type="button" class="btn btn-default white login_btn" id="submit_register">立即注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid text-center bottom">来一架</div>
+@import "../include/footer.inc";
+<script type="text/javascript">
+    $(function () {
+        if (location.hash) {
+            $('#myTab a[href="' + location.hash + '"]').tab('show')
+        }
+    })
+    //账户登录提交
+    var _i = 0;
+    var login_type = "account";
+
+    function account_submit() {
+        if (_i != 0) {
+            return;
+        }
+        if ($("#account_username").val().trim() == "") {
+            //            $("#account_username").next().text("必填");
+            $.message("error", " 请填写登录账号");
+            return;
+        }
+        if ($("#account_password").val().trim() == "") {
+            //            $('#account_password').next().text("必填");
+            $.message("error", " 请填写登录密码");
+            return;
+        }
+        _i = 1;
+        $("#account_login_btn").html("正在为您跳转");
+        $.ajax({
+            url: base + "/common/public_key.jhtml",
+            type: "POST",
+            data: {local: true},
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                var rsaKey = new RSAKey();
+                rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
+                var enPassword = hex2b64(rsaKey.encrypt($("#account_password").val()));
+                console.log(data);
+                console.log($("#account_username").val());
+                console.log(enPassword);
+                $.ajax({
+                    url: base + "/store/login/submit.jhtml",
+                    type: "POST",
+                    data: {
+                        username: $("#account_username").val(),
+                        enPassword: enPassword
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (message) {
+                        console.log(message)
+                        if (message.type == "success") {
+                            $.message("success", "登录成功！正在为您跳转....");
+                            setTimeout(function () {
+                                location.href = base + "/store/member/index.jhtml";
+                            }, 1500);
+
+                            if ($("#isRememberUsername").prop("checked")) {
+                                addCookie("memberUsername", $("#account_username").val(), {expires: 7 * 24 * 60 * 60});
+                            } else {
+                                removeCookie("memberUsername");
+                            }
+                        } else {
+                            $.message(message);
+                            _i = 0;
+                            $("#account_login_btn").html("登录");
+                        }
+                    }
+                });
+            }, complete: function (data) {
+                console.log(data);
+            }
+        });
+    }
+
+    //手机登录提交
+    function phone_submit() {
+        if ($("#login_phone").val().trim() == "") {
+            //            $('#login_phone').next().text("必填");
+            $.message("error", " 请填写手机号");
+            return;
+        }
+        if ($("#login_captcha").val().trim() == "") {
+            //            $('#login_captcha').next().next().text("必填");
+            $.message("error", " 请填写验证码");
+            return;
+        }
+        $("#phone_login_btn").html("正在为您跳转");
+        $.ajax({
+            url: base + "/store/login/phone_login_submit.jhtml",
+            type: "POST",
+            data: {
+                mobile: $("#login_phone").val().trim(),
+                captcha: $("#login_captcha").val().trim()
+            },
+            dataType: "json",
+            cache: false,
+            success: function (message) {
+                $.message(message.type, message.content);
+                if (message.type == "success") {
+                    setTimeout(function () {
+                        location.href = base + "/store/member/index.jhtml";
+                    }, 1500);
+
+                    if ($("#isRememberUsername").prop("checked")) {
+                        addCookie("memberUsername", $("#login_phone").val(), {expires: 7 * 24 * 60 * 60});
+                    } else {
+                        removeCookie("memberUsername");
+                    }
+                } else {
+                    $("#phone_login_btn").html("登录");
+                }
+            }, complete: function (data) {
+                console.log(data);
+            }
+        });
+    }
+
+    //按enter键登录
+    document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13) { // enter 键
+            if (login_type == "account") {
+                account_submit();
+            } else if (login_type == "phone") {
+                phone_submit();
+            } else if (login_type == "forget") {
+                go_reset();
+            } else if (login_type == "reset") {
+                reset_password();
+            }
+        }
+    };
+
+
+    //60秒倒计时
+    var count = 60, ii;
+
+    function refreshTime() {
+        count = count - 1;
+        if (count == 0) {
+            $(".get-btn").html("获取验证码");
+            count = 60;
+            clearInterval(ii);
+            return false;
+        }
+        $(".get-btn").html(count + "秒后重新获取");
+    }
+
+    //手机登录获取验证码
+    function get_code(type) {
+        var type_url = "", data = "";
+        if (count != 60) {
+            return;
+        }
+        if (type == 'phone_login') {
+            if ($("#login_phone").val().trim() == "") {
+                $.message('warn', "请先填写手机号码");
+                return false;
+            }
+            if (!(/^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/.test($("#login_phone").val().trim()))) {
+                $.message('warn', "请确认您的号码是否正确");
+                return false;
+            }
+            type_url = base + "/store/login/send_mobile.jhtml";
+            data = {
+                mobile: $("#login_phone").val().trim()
+            };
+        } else if (type == 'forget_password') {
+            if ($("#forget_username").val().trim() == "") {
+                $.message('warn', "请先填写手机号码");
+                return false;
+            }
+            if ($("#forget_img_captcha").val().trim() == "") {
+                $.message('warn', "验证码不能为空");
+                return false;
+            }
+            if (!(/^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/.test($("#forget_username").val().trim()))) {
+                $.message('warn', "请确认您的号码是否正确");
+                return false;
+            }
+            type_url = base + "/store/login/send.jhtml";
+            data = {
+                username: $("#forget_username").val().trim(),
+                captchaId: "${captchaId}",
+                captcha: $("#forget_img_captcha").val().trim()
+            };
+            console.log(data);
+        }
+        $.ajax({
+            url: type_url,
+            data: data,
+            type: "POST",
+            dataType: "json",
+            cache: false,
+            success: function (message) {
+                $.message(message);
+                if (message.type == "success") {
+                    ii = setInterval(refreshTime, 1 * 1000);
+                    $(".get-btn").html(count + "秒后重新获取");
+                } else {
+                    //======兼容IE========//
+                    $("#forget_captcha_img").attr("src", base + "/common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+                }
+            }
+        });
+    }
+
+    //
+    <!--登录js验证-->
+    $().ready(function () {
+        $("#forget_captcha_img").click(function () {
+            //======兼容IE========//
+            $("#forget_captcha_img").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+        });
+    });
+
+    //点击下一步
+    function go_reset() {
+        if ($("#forget_username").val().trim() == "") {
+            $.message('warn', "手机号不能为空");
+            return false;
+        }
+        if ($("#forget_phone_captcha").val().trim() == "") {
+            $.message('warn', "验证码不能为空");
+            return false;
+        }
+        $.ajax({
+            url: base + "store/login/check_captcha.jhtml",
+            type: "post",
+            data: {
+                username: $("#forget_username").val().trim(),
+                securityCode: $("#forget_phone_captcha").val().trim()
+            },
+            dataType: "json",
+            success: function (message) {
+                $.message(message);
+                if (message.type == "success") {
+                    //                    login_method("reset");
+                    login_type = "reset"
+                    $('.reset_password').removeClass('collapse');
+                    $('.loss_password').addClass('collapse');
+                } else {
+                    //                    login_method("forget");
+                }
+            }
+        });
+    }
+
+    //重置密码提交
+    function reset_password() {
+        var _mobile = $("#forget_username").val().trim();
+        var _npassword = $("#new_password").val().trim();
+        var _enpassword = $("#re_new_password").val().trim();
+        if (_npassword == "" || _npassword == null) {
+            $.message("warn", "请输入新密码");
+            return;
+        }
+        if (_enpassword == "" || _enpassword == null) {
+            $.message("warn", "请再次输入新密码");
+            return;
+        }
+
+        if (_npassword != _enpassword) {
+            $.message("warn", "两次密码不一致，请重新确认！");
+            return;
+        }
+        $.ajax({
+            url: base + "/common/public_key.jhtml",
+            type: "POST",
+            data: {local: true},
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                var rsaKey = new RSAKey();
+                rsaKey.setPublic(b64tohex(data.modulus), b64tohex(data.exponent));
+                var enPassword = hex2b64(rsaKey.encrypt(_npassword));
+                $.ajax({
+                    url: base + "store/login/reset.jhtml",
+                    type: "POST",
+                    data: {
+                        mobile: _mobile,
+                        newpassword: enPassword,
+                        securityCode: $("#forget_phone_captcha").val().trim()
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (message) {
+                        $.message(message.type, message.content);
+                        if (message.type == 'success') {
+                            $('.account_num').removeClass('collapse');
+                            $('.phone_num').addClass('collapse');
+                            $('.reset_password').addClass('collapse');
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+
+    $(function () {
+
+        $(document).on('click', '#login .login_phone', function () {
+            login_type = "phone"
+            $('.account_num').addClass('collapse');
+            $('.phone_num').removeClass('collapse');
+        });
+        $(document).on('click', '#login .login_account', function () {
+            login_type = "account";
+            $('.account_num').removeClass('collapse');
+            $('.phone_num').addClass('collapse');
+        })
+        $(document).on('click', '.forget', function () {
+            login_type = "forget"
+            $('.account_num').addClass('collapse')
+            $('.loss_password').removeClass('collapse')
+            $("#forget_captcha_img").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+        })
+        $(document).on('click', '.gobackLogin', function () {
+            login_type = "account"
+            $('.account_num').removeClass('collapse');
+            $('.loss_password').addClass('collapse');
+            $('.reset_password').addClass('collapse');
+        })
+
+        $('[data-toggle="popover"]').popover()
+
+        $("#imgAuthCode").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+        $("#imgAuthCode").click(function () {
+            //======兼容IE========//
+            $("#imgAuthCode").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+        });
+
+
+        //注册
+        var url_list;
+        var timeout;
+        var $communityId;
+        var $citySelect;
+        var $areaId;
+        $(function () {
+            // =======地区选择===============
+            $("#areaId").lSelect({
+                url: base + "/common/area.jhtml"
+            });
+            //清除火狐浏览器刷新多出拉下框
+            $("select[name='areaId_select']").each(function () {
+                if ($(this).val() == "") {
+                    $(this).nextAll("select").remove();
+                    return false;
+                }
+            });
+            var $inputForm = $("#inputForm");
+            $areaId = $("#areaId");
+            $communityId = $("#communityId");
+
+            //=====验证码切换=======//
+
+            $("#imgAuthCode").click(function () {
+                //======兼容IE========//
+                $("#imgAuthCode").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+            });
+            //======获取手机验证码========//
+
+            //60秒倒计时
+            var count = 60, iiRg;
+
+            function refreshTimeRg() {
+                count = count - 1;
+                if (count == 0) {
+                    $("#getPhoneCode").html("获取验证码");
+                    count = 60;
+                    clearInterval(iiRg);
+                    return false;
+                }
+                $("#getPhoneCode").html(count + "秒后重新获取");
+            }
+
+            $("#getPhoneCode").click(function () {
+                if (count != 60) {
+                    return;
+                }
+                if ($("#form-phone").val().trim() == '') {
+                    $.message("error", " 请先填写手机号");
+                    return false;
+                }
+                if (!(/^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/.test($("#form-phone").val()))) {
+                    $.message("error", "手机号码不符合");
+                    return;
+                }
+                if ($("#authCode").val().trim() == '') {
+                    $.message("error", " 请先填写验证码");
+                    return false;
+                }
+                $.ajax({
+                    url: base + "store/register/send.jhtml",
+                    data: {
+                        username: $("#form-phone").val(),
+                        captchaId: "${captchaId}",
+                        captcha: $("#authCode").val()
+                    },
+                    dataType: "json",
+                    type: "post",
+                    success: function (data) {
+                        $.message(data.type, data.content);
+                        if (data.type == 'error') {
+                            //======兼容IE========//
+                            $("#imgAuthCode").attr("src", base + "common/captcha.jhtml?captchaId=${captchaId}&date=" + (+new Date()));
+                        } else if (data.type == 'success') {
+                            iiRg = setInterval(refreshTimeRg, 1 * 1000);
+                            $("#getPhoneCode").html(count + "秒后重新获取");
+                        }
+                        console.log("sr: " + data);
+                    }
+                });
+            });
+
+            //======注册提交======//
+            $("#submit_register").click(function () {
+                if ($("#form-phone").val().trim() == '') {
+                    $.message("error", " 请先填写手机号");
+                    return false;
+                }
+                if ($("#form-storeName").val().trim() == '') {
+                    $.message("error", "店铺名不能为空");
+                    return;
+                }
+                if ($("#form-legalPerson").val() == "") {
+                    $.message("error", "企业法人不能为空");
+                    return;
+                }
+                if ($("#form-fullAddress").val() == "") {
+                    $.message("error", "请填写详细地址");
+                    return;
+                }
+                //                if (url_list == "") {
+                //                    $.message("error", "请填写营业执照");
+                //                    return;
+                //                }
+
+                $.ajax({
+                    url: base + "/store/register/register_company.jhtml",
+                    type: "POST",
+                    data: {
+                        mobile: $("#form-phone").val().trim(),
+                        securityCode: $("#phoneCode").val().trim(),
+                        name: $("#form-storeName").val().trim(),
+                        address: $("#form-fullAddress").val().trim(),
+                        licensePhoto: '',
+                        linkman: $("#form-legalPerson").val().trim(),
+                        tenantType: $("[name='tenantType']").val(),
+                        areaId: $("#areaId").val().trim()
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (message) {
+                        if (message.type == "success") {
+                            $.message("success", "注册成功，等待审核中...");
+                            //                            login_method("account");
+                        } else {
+                            $.message(message);
+                        }
+                    }
+                });
+
+            });
+
+        })
+    })
+</script>
+
+</body>
+
+</html>

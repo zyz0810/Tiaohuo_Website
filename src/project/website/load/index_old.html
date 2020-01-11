@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>下载中心</title>
+    @import "../include/header.inc";
+</head>
+<body class="download_center">
+
+<div class="header">
+    @import "../../../model/widgets/navBar.html";
+</div>
+
+<div class="container-fluid download">
+    <div class="container">
+        <ul class="row cont">
+            <li class="col-sm-3 txt">
+                <p class="f30 text-center">来一架</p>
+                <p class="f20 text-center" style="color: #656769;">智慧商业解决方案提供商</p>
+                <ul class="row ul_01 ewm_cont" data-id="1">
+                    <li class="col-sm-3 col-xs-3 col-sm-offset-1 col-xs-offset-1">
+                        <img src="/website/images/static/load/icon_phone.png" alt="">
+                    </li>
+                    <li class="col-sm-8 col-xs-8">
+                        <p class="f20">来一架 APP</p>
+                        <p class="f16">IOS/Android</p>
+                    </li>
+                    <div class="cover">
+                        <div class="ewm">
+                            <div class="code_arrow"></div>
+                            <img src="/website/images/static/load/B.png" alt=""/>
+                        </div>
+                    </div>
+                </ul>
+                <ul class="row" data-id="2">
+                    <li class="col-sm-3 col-xs-3 col-sm-offset-1 col-xs-offset-1">
+                        <img src="/website/images/static/load/icon_wins.png" alt="">
+                    </li>
+                    <li class="col-sm-8 col-xs-8">
+                        <p class="f20">零售收银系统</p>
+                        <p class="f16">PC windows</p>
+                    </li>
+                    <div class="cover text-center">
+                        <a href="https://tiaohuowang.oss-cn-hangzhou.aliyuncs.com/vbox/vbox_setup.zip" class="load_btn">下载</a>
+                    </div>
+                </ul>
+                <ul class="row" data-id="3">
+                    <li class="col-sm-3 col-xs-3 col-sm-offset-1 col-xs-offset-1">
+                        <img src="/website/images/static/load/icon_pad.png" alt="">
+                    </li>
+                    <li class="col-sm-8 col-xs-8">
+                        <p class="f20">平板 ERP</p>
+                        <p class="f16">Android平板电脑</p>
+                    </li>
+                    <div class="cover text-center">
+                        <a href="javascript:;" class="load_btn">敬请期待</a>
+                    </div>
+                </ul>
+                <ul class="row ewm_cont" data-id="4">
+                    <li class="col-sm-3 col-xs-3 col-sm-offset-1 col-xs-offset-1">
+                        <img src="/website/images/static/load/icon_phone.png" alt="">
+                    </li>
+                    <li class="col-sm-8 col-xs-8">
+                        <p class="f20">来一架 APP</p>
+                        <p class="f16">IOS/Android</p>
+                    </li>
+                    <div class="cover">
+                        <div class="ewm">
+                            <div class="code_arrow"></div>
+                            <img src="/website/images/static/load/C.png" alt=""/>
+                        </div>
+                    </div>
+                </ul>
+            </li>
+            <li class="col-sm-9 img">
+                <img src="/website/images/static/load/pad.png" id="img00" alt="">
+                <img src="/website/images/static/load/1.png" id="img01" alt="">
+                <img src="/website/images/static/load/img.png" id="img02" alt="">
+                <img src="/website/images/static/load/1.png" id="img03" alt="">
+                <img src="/website/images/static/load/img.png" id="img04" alt="">
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+@import "../include/footer.inc";
+<script type="text/javascript">
+    $(function(){
+        $(document).on('mouseover','.cont .txt ul', function () {
+            $(this).find('.cover').css({'display':'block'});
+            $(this).css({'background':'#d7e6ff'});
+            var id = $(this).attr('data-id');
+            $('.img #img0' + id).css({'display':'block'});
+            $('.img #img0' + id).siblings().css({'display':'none'});
+        });
+        $(document).on('mouseout','.cont .txt ul', function () {
+            $(this).find('.cover').css({'display':'none'});
+            $(this).css({'background':'#fff'});
+            $('.img #img00').css({'display':'block'});
+            $('.img #img00').siblings().css({'display':'none'});
+        })
+    })
+</script>
+</body>
+
+</html>

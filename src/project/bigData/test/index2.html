@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title></title>
+</head>
+<body ontouchstart>
+<div class="weui-toptips weui-toptips_warn js_tooltips">错误提示</div>
+<div class="container" id="container"></div>
+<link rel="import" href="../../../pages/bigData/test/index2.html">
+
+<script src="/weixin/js/common.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        pageManager.show("index2");
+        function getTime() {
+            var myDate = new Date();//获取系统当前时间
+            var year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+            var month = myDate.getMonth(); //获取当前月份(0-11,0代表1月)
+            var data = myDate.getDate(); //获取当前日(1-31)
+            var weekday = myDate.getDay(); //获取当前星期X(0-6,0代表星期天)
+            var hours = myDate.getHours(); //获取当前小时数(0-23)
+            var minutes = myDate.getMinutes(); //获取当前分钟数(0-59)
+            var seconds = myDate.getSeconds(); //获取当前秒数(0-59)
+            if(month < 10){
+                month = '0'+month;
+            }
+            if(data < 10){
+                data = '0'+data;
+            }
+            if(minutes < 10){
+                minutes = '0'+minutes;
+            }
+            if(seconds < 10){
+                seconds = '0'+seconds;
+            }
+            var week;
+            if(weekday == 0){
+                week = '星期日';
+            }else if(weekday == 1){
+                week = '星期一'
+            }else if(weekday == 2){
+                week = '星期二'
+            }else if(weekday == 3){
+                week = '星期三'
+            }else if(weekday == 4){
+                week = '星期四'
+            }else if(weekday == 5){
+                week = '星期五'
+            }else if(weekday == 6){
+                week = '星期六'
+            }
+
+            $('.data_time').html(year + '年' + month + '月' + data + '日 ' + hours + ':' + minutes + ':' + seconds + '  ' + week);
+        }
+
+        // var timer = setInterval(getTime(),1000);
+        // timer();
+        var timer = setInterval(getTime, 1000);
+
+        var dom = document.getElementById("echart");
+        var myChart = echarts.init(dom);
+        mapOption = null;
+// 散点在地图上的坐标
+        var geoCoordMap = {
+            "大庆": [125.03, 46.58],
+            "廊坊": [116.7, 39.53],
+            "菏泽": [115.480656, 35.23375],
+            "合肥": [117.27, 31.86],
+            "武汉": [114.31, 30.52],
+            "衢州": [118.88, 28.97]
+        };
+        var data = [
+            {name: "大庆", value: 110},
+            {name: "廊坊", value: 210},
+            {name: "菏泽", value: 210},
+            {name: "合肥", value: 210},
+            {name: "武汉", value: 310},
+            {name: "衢州", value: 310}
+        ];
+
+        var convertData = function (data) {
+            var res = [];
+            for (var i = 0; i < data.length; i++) {
+                var geoCoord = geoCoordMap[data[i].name];
+                if (geoCoord) {
+                    res.push({
+                        name: data[i].name,
+                        value: geoCoord.concat(data[i].value)
+                    });
+                }
+            }
+            return res;
+        };
+
+        // 将坐标与值对应并反映在地图上
+        // var convertData = function (data) {
+        //     var res = [];
+        //     for (var i = 0; i < data.length; i++) {
+        //         var geoCoord = geoCoordMap[data[i].name];
+        //         if (geoCoord) {
+        //             res.push({
+        //                 name: data[i].name,
+        //                 value: geoCoord.concat(data[i].value)
+        //             });
+        //         }
+        //     }
+        //     return res;
+        // };
+
+
+        mapOption = {
+            tooltip: {
+                trigger: 'item',
+                formatter: function (params) {
+                    return params.name;
+                }
+            },
+            visualMap: {
+                type: 'piecewise',
+                textStyle: {
+                    color: 'red'
+                },
+                pieces: [
+                    {min: 300, label: '国家级基地', color: 'yellow'},
+                    {min: 200, max: 300, label: '省级基地', color: 'yellow'},
+                    {min: 100, max: 200, label: '市级基地', color: 'yellow'}
+                ],
+                color: ['yellow', 'yellow', 'yellow']
+            },
+            geo: {
+                map: 'china',
+                label: {
+                    emphasis: {
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        areaColor: '#0c2e5c',
+                        borderColor: '#24518c',
+                        borderWidth: '2'
+                    },
+                    emphasis: {
+                        areaColor: 'red'
+                    }
+                }
+            },
+            tooltip : {
+                trigger: 'item'
+            },
+            series: [
+                {
+                    name: 'Top 5',
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    // data: convertData([
+                    //     {name: "大庆", value: 110},
+                    //     {name: "廊坊", value: 210},
+                    //     {name: "菏泽", value: 210},
+                    //     {name: "合肥", value: 210},
+                    //     {name: "武汉", value: 310},
+                    //     {name: "衢州", value: 310}
+                    // ]),
+                    data: convertData(data.sort(function (a, b) {
+                        return b.value - a.value;
+                    }).slice(0, 6)),
+                    symbolSize: 12,
+                    label: {
+                        normal: {
+                            formatter: '{b}',
+                            show: true,
+                            position: 'right'
+
+                        },
+                        emphasis: {
+                            show: false
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            show: true,
+                            position: 'right'
+
+                        },
+                        emphasis: {
+                            borderColor: '#fff',
+                            borderWidth: 1
+                        }
+                    }
+                }
+            ]
+        };
+        if (mapOption && typeof mapOption === "object") {
+            myChart.setOption(mapOption, true);
+        }
+
+        var weatherIcons = {
+            'Sunny': '/image/include/sunny_128.png',
+            'Cloudy': '/image/include/cloudy_128.png',
+            'Showers': '/image/include/showers_128.png'
+        };
+        var pieOption = {
+            title: {
+                text: '天气情况统计',
+                subtext: '虚构数据',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                // orient: 'vertical',
+                // top: 'middle',
+                bottom: 10,
+                left: 'center',
+                data: ['西凉', '益州']
+            },
+            series: [
+                {
+                    type: 'pie',
+                    radius: '65%',
+                    center: ['50%', '50%'],
+                    selectedMode: 'single',
+                    data: [
+                        {value: 1548, name: '幽州'},
+                        {value: 735, name: '西凉'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        var pieChart = echarts.init(document.getElementById('pieEchart'));
+        pieChart.setOption(pieOption)
+
+
+        var ringOption = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: ['直接访问', '搜索引擎']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: ['50%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [
+                        {value: 335, name: '直接访问'},
+                        {value: 1548, name: '搜索引擎'}
+                    ]
+                }
+            ]
+        };
+        var ringEchart = echarts.init(document.getElementById('ringEchart'));
+        ringEchart.setOption(ringOption)
+
+
+        var barOption = {
+            dataset: {
+                source: [
+                    ['score', 'amount', 'product'],
+                    [89.3, 28212, '货架总数量'],
+                    [5.1, 78254, '货架新增数量']
+                ]
+            },
+            grid: {containLabel: true},
+            xAxis: {name: 'amount'},
+            yAxis: {type: 'category'},
+            visualMap: {
+                orient: 'horizontal',
+                left: 'center',
+                min: 10,
+                max: 100,
+                text: ['High Score', 'Low Score'],
+                // Map the score column to color
+                dimension: 0,
+                inRange: {
+                    color: ['#D7DA8B', '#E15457']
+                }
+            },
+            series: [
+                {
+                    type: 'bar',
+                    encode: {
+                        // Map the "amount" column to X axis.
+                        x: 'amount',
+                        // Map the "product" column to Y axis
+                        y: 'product'
+                    }
+                }
+            ]
+        };
+        var barEchart = echarts.init(document.getElementById('barEchart'));
+        barEchart.setOption(barOption)
+
+    });
+</script>
+</body>
+</html>
+

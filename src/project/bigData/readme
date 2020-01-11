@@ -1,0 +1,16 @@
+
+页面说明（此目录下全是app所用H5页面）
+
+                  现地址                                      原地址
+
+关于我们    app/aboutUs/index.html                         app/about.html
+
+意见反馈    app/feedBack/index.html                        app/feedback.html
+
+商品详情    app/product/index.html                         weixin/product/product-app.html
+
+常见问题    app/questions/index.html                        无
+
+问题详情    app/questions/questionsDetails.html             无
+
+商家详情    app/tenant/index.html                           weixin/tenant/tenant-app.html

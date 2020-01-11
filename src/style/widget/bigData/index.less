@@ -1,0 +1,382 @@
+.bigData {
+  background: url("../images/bg.png") #03081c no-repeat;
+  .title {
+    //background: #68b0fc;
+    width: 96%;
+    margin: 2% auto;
+    position: relative;
+  }
+  .container_div {
+    width: 96%;
+    margin: 0 auto;
+  }
+  .num_sum {
+    //border: ;
+    color: #4fffc1;
+    margin-top: 20px;
+    line-height: 2em;
+    background: url("../images/border.png") no-repeat;
+    background-size: 100% 100%;
+  }
+  .data_time {
+    position: absolute;
+    left: 1%;
+    top: 20%;
+  }
+  .txt {
+    position: absolute;
+    right: 1%;
+    top: 20%;
+  }
+
+  .left {
+    //width: 18%;
+    padding: 2% 1%;
+    //border: 1px solid #04386a;
+    background: url("../images/border09.png") no-repeat;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+    position: relative;
+    a{
+      &:hover{
+        color: @white !important;
+      }
+    }
+    .left_bottom {
+      margin-top: 20%;
+      .newAdd {
+        margin: 20px 0;
+        .newAdd_item {
+          height: 32px;
+          border: 1px solid #139d96;
+        }
+        .jianbian {
+          width: 0;
+          height: 32px;
+          transition: width 2s;
+          -moz-transition: width 2s; /* Firefox 4 */
+          -webkit-transition: width 2s; /* Safari and Chrome */
+          -o-transition: width 2s; /* Opera */
+          background: -webkit-linear-gradient(left, #2d8373, #359d6e); /* Safari 5.1 - 6.0 */
+          background: -o-linear-gradient(right, #2d8373, #359d6e); /* Opera 11.1 - 12.0 */
+          background: -moz-linear-gradient(right, #2d8373, #359d6e); /* Firefox 3.6 - 15 */
+          background: linear-gradient(to right, #2d8373, #359d6e); /* 标准的语法（必须放在最后） */
+        }
+      }
+    }
+  }
+  .middle {
+    //width: 43.48%;
+
+    //margin: 0 2%;
+    //border:1px solid #04386a;
+    box-sizing: border-box;
+    .money {
+      line-height: 1.2;
+      //border: 1px solid #04386a;
+      padding: 4%;
+      background: url("../images/border08.png") no-repeat;
+      background-size: 100% 100%;
+
+      .money_txt {
+        //padding: 6px;
+        height: 80px;
+        //margin-right: 2%;
+      }
+      .money_num {
+        height: 80px;
+        line-height: 80px;
+        margin-left: 5%;
+        overflow: hidden;
+        background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#fea903), to(#e65431));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 18px;
+        & > div {
+          background: #041f3f;
+          padding: 0 5px;
+          margin: 0 12px;
+          display: inline-block;
+          &.dot {
+            padding: 0;
+            margin: 0;
+            background: transparent;
+          }
+          span {
+            display: inline-block;
+            //height: 80px;
+
+            //background: red;
+            //color: red;
+            background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#fea903), to(#e65431));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+          }
+        }
+      }
+    }
+    .chinaMap {
+      margin-top: 10px;
+      .china_map {
+        background: url("../images/border10.png") no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+      }
+
+    }
+
+  }
+  .right {
+    //width: 34.24%;
+
+    .rightOne, .rightTwo, .rightThree {
+      //padding: 2% 0;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .rightOne, .rightTwo {
+      border: 1px solid #04386a;
+    }
+    .rightThree {
+      background: url("../images/border12.png") no-repeat;
+      background-size: 100% 100%;
+    }
+    .right_title {
+      padding: 0 2%;
+      line-height: 3;
+      background: -webkit-linear-gradient(left, #173b62, #041b2c); /* Safari 5.1 - 6.0 */
+      background: -o-linear-gradient(right, #173b62, #041b2c); /* Opera 11.1 - 12.0 */
+      background: -moz-linear-gradient(right, #173b62, #041b2c); /* Firefox 3.6 - 15 */
+      background: linear-gradient(to right, #173b62, #041b2c); /* 标准的语法（必须放在最后） */
+    }
+    .border_top_left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 21px;
+    }
+    .border_top_right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 20px;
+      height: 21px;
+    }
+    .border_bottom_left {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 20px;
+      height: 21px;
+    }
+    .border_bottom_right {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 20px;
+      height: 21px;
+    }
+  }
+  .border_position {
+    position: absolute;
+    top: -8%;
+    right: 0;
+    width: 6.6%;
+    height: 8%;
+  }
+  .rightThree_txt {
+    //width: 50%;
+    width: 100%;
+    padding: 20px 10px 0 0;
+    p {
+      margin-bottom: 0;
+      &:nth-child(2) {
+        color: #f35a5a;
+        margin-bottom: 20px;
+      }
+      &:nth-child(4) {
+        color: #46dbe6;
+      }
+    }
+  }
+
+  /* 超小屏幕（手机，小于 768px） */
+  /* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 Bootstrap 是移动设备优先的吗？） */
+  @media (max-width: 750px) {
+
+    .left, .middle, .right {
+      width: 100%;
+      margin-bottom: 2%;
+    }
+
+    .left {
+      padding: 8% 2%;
+      .num_sum {
+        width: 60%;
+        margin: 20px auto 0;
+      }
+      .left_bottom {
+        margin-top: 5%;
+      }
+      #hengEChart {
+        height: 360px !important;
+      }
+    }
+
+    .middle {
+      margin-left: 0;
+      margin-right: 0;
+      .money {
+        padding: 2%;
+        .money_txt {
+          height: 50px !important;
+          padding-top: 7px !important;
+        }
+        .money_num {
+          height: 50px !important;
+          line-height: 50px !important;
+          margin-left: 4% !important;
+          letter-spacing: 7px !important;
+          overflow: hidden;
+          background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#fea903), to(#e65431));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+  }
+
+}
+
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: 768px) {
+  //.left {
+  //  width: 33.33333333%;
+  //}
+  //
+  //.middle {
+  //  width: 62.66666667%;
+  //  margin: 0 2%;
+  //  .money {
+  //    .money_txt{
+  //      padding-top: 8px;
+  //    }
+  //    .money_num {
+  //      margin-left: 3% !important;
+  //      letter-spacing: 6px !important;
+  //    }
+  //  }
+  //  #mapEchart{
+  //    height: 580px !important;
+  //  }
+  //}
+  //
+  //.right {
+  //  width: 100%;
+  //  .rightOne, .rightTwo,rightThree {
+  //    width: 100%;
+  //    margin-top: 2%;
+  //  }
+  //#barEChart2{
+  //  height: 220px !important;
+  //}
+  //}
+
+  .left {
+    width: 18%;
+  }
+
+  .middle {
+    width: 43.48%;
+    margin: 0 2%;
+    .money {
+      .money_txt{
+        padding-top: 0px;
+      }
+      .money_num {
+        margin-left: 5% !important;
+        letter-spacing: 18px !important;
+      }
+    }
+    #mapEchart{
+      height: 630px !important;
+    }
+  }
+
+  .right {
+    width: 34.24%;
+    .rightOne, .rightTwo, .rightThree {
+      float: none;
+      width: 100%;
+      margin-top: 0;
+    }
+    .rightTwo {
+      margin: 0;
+    }
+    #barEChart2{
+      height: 240px !important;
+    }
+  }
+
+
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+  .left {
+    width: 18%;
+  }
+
+  .middle {
+    width: 43.48%;
+    margin: 0 2%;
+    .money {
+      .money_txt{
+        padding-top: 0px;
+      }
+      .money_num {
+        margin-left: 5% !important;
+        letter-spacing: 18px !important;
+      }
+    }
+    #mapEchart{
+      height: 630px !important;
+    }
+  }
+
+  .right {
+    width: 34.24%;
+    .rightOne, .rightTwo, .rightThree {
+      float: none;
+      width: 100%;
+      margin-top: 0;
+    }
+    .rightTwo {
+      margin: 0;
+    }
+    #barEChart2{
+      height: 240px !important;
+    }
+  }
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1200px) {
+  .left {
+    width: 18%;
+  }
+
+  .middle {
+    width: 43.48%;
+    margin: 0 2%;
+
+  }
+
+  .right {
+    width: 34.24%;
+  }
+
+}

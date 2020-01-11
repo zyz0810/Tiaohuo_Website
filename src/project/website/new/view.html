@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>来一架动态</title>
+    @import "../include/header.inc";
+</head>
+<body class="new_company">
+<div class="header">
+    @import "../../../model/widgets/navBar.html";
+    <img src="/website/images/static/new/banner.png" alt=""/>
+    <div class="container-fluid">
+        <div class="container">
+            <p class="f44">新闻动态</p>
+            <p class="f20">丰富应用，满足您的个性化营销需求</p>
+        </div>
+    </div>
+</div>
+<div class="column-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 new_list f14">
+                <h3 class="text-center new_tit"></h3>
+                <p class="text-center creat_time"></p>
+                <div class="new_cont"></div>
+            </div>
+            <div class="col-sm-3 new_right">
+                <div class="hot">
+                    <p class="news_title f16 bold">热门文章</p>
+                    <ul class="hot_circle"></ul>
+                </div>
+                <div class="search">
+                    <p class="news_title f16 bold">热门搜索</p>
+                    <div class="hot_search"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@import "../../../model/widgets/bottomBar.html";
+@import "../include/footer.inc";
+<script type="text/javascript">
+    $(function () {
+
+        //新闻详情
+        huoqu();
+        //侧边栏新闻列表
+        huoquUl();
+        //热门搜索标签
+        hotSearch();
+
+        function huoqu() {
+            var url= base + 'weixin/kuaixun/view.jhtml';
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: url,
+                data: "id=" + pageManager.GetQueryString('id'),
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (msg) {
+                    setTimeout(function () {
+                        $('.new_tit').html(msg.data.title);
+                        $('.creat_time').html(msg.data.createDate2);
+                        $('.new_cont').html(msg.data.content);
+                    },30);
+                }
+            });
+        }
+
+        function huoquUl() {
+            var url = base + 'weixin/kuaixun/list.jhtml';
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: url,
+                data: {
+                    pageNumber:1,
+                    pageSize:10
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (msg) {
+                    if(msg.data.length>0){
+                        for(var i = 0; i < msg.data.length; i++) {
+                            var str = ' <li><a href="/website/new/view.html?id=' + msg.data[i].id + '"><span class="baseColor">▪</span>' + msg.data[i].title + '</a></li>';
+                            $(".hot_circle").append(str);
+                        }
+                    }else{
+                        $('.hot').remove();
+                    }
+                }
+            });
+        }
+
+        function hotSearch() {
+            var url = base + 'weixin/kuaixun/hot_search.jhtml';
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: url,
+                data: {},
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (msg) {
+                    if(msg.data.length != 0){
+                        var s = '';
+                        $.each(msg.data,function (i, v) {
+                            s+='<a href="/website/new/search.html?keyword=' + escape(v) + '" class="gray01">' + v + '</a>';
+                        });
+                        $('.hot_search').html(s);
+                    }else{
+                        $('.search').remove();
+                    }
+                }
+            });
+        }
+
+    })
+</script>
+</body>
+
+</html>

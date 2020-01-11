@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>公司介绍</title>
+    @import "../include/header.inc";
+</head>
+<body class="new_company">
+<div class="header">
+    @import "../../../model/widgets/navBar.html";
+    <img src="/website/images/static/new/banner.png" alt=""/>
+    <div class="container-fluid">
+        <div class="container">
+            <p class="f44">公司介绍</p>
+            <p class="f20">丰富应用，满足您的个性化营销需求</p>
+        </div>
+    </div>
+</div>
+<div class="column-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 new_list new_content f14">
+                <h3 class="text-center new_tit bold f24">合肥付利购电子商务有限公司</h3>
+                <div class="new_cont company_intro f16">
+                    <p class="f20 bold">一、公司概况</p>
+                    <p>合肥付利购电子商务有限公司于2012年11月成立，与富士康、大华股份形成战略合作伙伴关系。我司是一家致力于帮助实体行业完成互联网化的高新技术企业,专业为实体行业提供OMO整体解决方案的高科技企业，助力于实体行业转型升级，为实体行业“输出技术，输出模式，连接资本”。</p>
+                    <p>公司拥有全国领先的互联网技术、移动互联网技术及相关信息化应用技术，目前公司在厦门、合肥、南京等地设立多个技术研发中心，拥有全国技术服务能力。公司自主研发的来一架OMO系统，是一个基于优质实体店帮助实体店实现互联网化，形成的OMO服务平台。来一架OMO系统通过在线商务（云商城）—移动电子商务（APP）—线下商务（实体店）的有效聚合，帮助企业打造线上—移动—线下、三位一体的全渠道新零售营销系统。</p>
+                </div>
+            </div>
+            <div class="col-sm-3 new_right">
+                <div class="hot">
+                    <p class="news_title f16 bold">热门文章</p>
+                    <ul class="hot_circle"></ul>
+                </div>
+                <div class="search">
+                    <p class="news_title f16 bold">热门搜索</p>
+                    <div class="hot_search"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@import "../../../model/widgets/bottomBar.html";
+@import "../include/footer.inc";
+<script type="text/javascript">
+    $(function () {
+
+        //侧边栏新闻列表
+        huoquUl();
+        //热门搜索标签
+        hotSearch();
+
+        function huoquUl() {
+            var url = base + 'weixin/kuaixun/list.jhtml';
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: url,
+                data: {
+                    pageNumber:1,
+                    pageSize:10
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (msg) {
+                    if(msg.data.length>0){
+                        for(var i = 0; i < msg.data.length; i++) {
+                            var str = ' <li><a href="/website/new/view.html?id=' + msg.data[i].id + '"><span class="baseColor">▪</span>' + msg.data[i].title + '</a></li>';
+                            $(".hot_circle").append(str);
+                        }
+                    }else{
+                        $('.hot').remove();
+                    }
+                }
+            });
+        }
+
+        function hotSearch() {
+            var url = base + 'weixin/kuaixun/hot_search.jhtml';
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: url,
+                data: {},
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.message('warn', "获取数据失败");
+                },
+                success: function (msg) {
+                    if(msg.data.length != 0){
+                        var s = '';
+                        $.each(msg.data,function (i, v) {
+                            s+='<a href="/website/new/search.html?keyword=' + escape(v) + '" class="gray01">' + v + '</a>';
+                        });
+                        $('.hot_search').html(s);
+                    }else{
+                        $('.search').remove();
+                    }
+                }
+            });
+        }
+
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>来一架-切换店铺</title>
+    @import "../include/header.inc";
+    <style>
+        body,html{
+            height:100%;
+        }
+    </style>
+    <!--[if IE]>
+    <script type="text/javascript">
+        $(function () {
+           var heigh = $(window).height();
+            if(heigh < 780)
+            $('.zhuce').css({'top':'39%','height':'600px'});
+            $('.g-mb40').css({'margin-bottom':'20px'});
+            $('.g-mb30').css({'margin-bottom':'20px'});
+        });
+    </script>
+    <![endif]-->
+</head>
+<body class="login bg tenant">
+<div class="container-fluid tenant_top" style="height: 100%">
+    <div class="container" style="height: 100%; padding-bottom: 12%; overflow-y: auto;position:relative;">
+        <div class="row tenant_top_nav">
+            <div class="col-xs-1 col-md-1"><a href="/website/home/index.html"><img src="/website/images/static/login/logo.png"/></a></div>
+            <div class="col-xs-6 col-md-6 title">
+                <span class="f20 gray02">切换店铺</span>
+            </div>
+            <div class="col-xs-5 col-md-5 text-right">
+                <span class="f13 gray02 bold">+86-<span class="top_phone"></span></span>
+                <a href="javascript:;" class="f13 baseColor sign_out">退出</a>
+            </div>
+        </div>
+
+        <div class="row user_info">
+            <div class="col-xs-2 col-md-1 headImg"><img src="/website/images/placeholder/no.png" /></div>
+            <div class="col-xs-7 col-md-8 middle grag">
+                <p class="f16 name"></p>
+                <p class="f13">+86-<span class="phone"></span><a href="/website/login/set.html" class="gray">设置</a></p>
+            </div>
+            <div class="col-xs-3 col-md-3 text-right setUp_btn">
+                <a href="/website/login/establish.html">创建店铺</a>
+            </div>
+        </div>
+        <div class="tenant_item">
+            <ul class="row"></ul>
+            <!--<div class="page_num f14 gray02 text-right">共 1 条，每页 48 条</div>-->
+        </div>
+
+        <!--<div class="bottom_img white row">-->
+            <!--<div class="col-xs-10 col-md-10 txt">-->
+                <!--<p class="f20">邀请好友开店 奖金翻倍停不下来</p>-->
+                <!--<p class="f16">多邀多得 上不封顶</p>-->
+            <!--</div>-->
+            <!--<div class="col-xs-2 col-md-2">-->
+                <!--<img src="/website/images/static/login/tenant_bottom.png"/>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </div>
+</div>
+@import "../include/footer.inc";
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script type="text/javascript">
+    var selectArea = [];
+    // getArea();
+    $(function () {
+        // var base = location.protocol + "//" + (location.host.toUpperCase() === 'LOCALHOST:8080' ? 'dev.tiaohuo.com/' : location.host + "/");
+
+        $('.sign_out').attr('href',base + '/store/member/logout.jhtml');
+
+        console.log('获取获取')
+        $.ajax({
+            url: "http://dev.tiaohuo.com/store/member/view.jhtml",
+            type: "get",
+            data: '',
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                if(data.headImg == null){
+                    $('.headImg img').attr('src','/website/images/placeholder/no.png');
+                }else{
+                    $('.headImg img').attr('src',data.headImg);
+                }
+                $('.name').html(data.nickName);
+                if(data.nickName == null){
+                    $('.name').html(data.mobile);
+                }else{
+                    $('.name').html(data.nickName);
+                }
+                $('.phone').html(data.mobile);
+                $('.top_phone').html(data.mobile);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('出错出错')
+                console.log(xhr.responseText)
+            }
+        });
+
+        $.ajax({
+            url: "http://dev.tiaohuo.com/store/member/tenant/list.jhtml",
+            type: "get",
+            data: '',
+            dataType: "json",
+            // cache: false,
+            success: function (data) {
+
+                console.log('拼接拼接')
+
+                var str = '';
+                for(var i = 0;i<data.length;i++){
+                    str += '<li class="pull-left" data-id="' + data[i].id + '">';
+                    str += '<p class="f16">' + data[i].name + '</p>';
+                    if(data[i].status == "success"){
+                        str += '<p class="f14 gray05 m5">主体信息：已认证</p>';
+                    }else{
+                        str += '<p class="f14 gray05 m5">主体信息：未认证</p>';
+                    }
+                    if(data[i].validDate != null){
+                        str += '<p class="f14 gray05" style="height: 22px;">试用期至：' + data[i].validDate + '</p>';
+                    }else{
+                        str += '<p class="f14 gray05" style="height: 22px;"></p>';
+                    }
+                    str += '<p class="text-right f13 gray05"><span class="baseColor property">来一架零售</span></p>';
+                    str += '</li>';
+                }
+                $('.tenant_item ul').append(str);
+            }
+        });
+
+        $(document).on('click','.tenant_item ul li',function () {
+            console.log('点击点击')
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: "http://dev.tiaohuo.com/store/member/tenant/select.jhtml",
+                type: "post",
+                data: {id:id},
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    setTimeout(function () {
+                        location.href = "http://dev.tiaohuo.com/store/member/index.jhtml";
+                    }, 500);
+                }
+            });
+        })
+
+    })
+
+</script>
+
+</body>
+
+</html>

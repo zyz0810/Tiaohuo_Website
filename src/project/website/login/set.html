@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>来一架-个人账号设置</title>
+    @import "../include/header.inc";
+    <style>
+        body, html {
+            height: 100%;
+        }
+    </style>
+    <!--[if IE]>
+    <script type="text/javascript">
+        $(function () {
+            var heigh = $(window).height();
+            if (heigh < 780)
+                $('.zhuce').css({'top': '39%', 'height': '600px'});
+            $('.g-mb40').css({'margin-bottom': '20px'});
+            $('.g-mb30').css({'margin-bottom': '20px'});
+        });
+    </script>
+    <![endif]-->
+</head>
+<body class="login bg">
+<div class="container-fluid tenant_top establish" style="height: 100%;">
+    <div class="container" style="height: 100%; overflow-y: auto;">
+        <div class="row tenant_top_nav">
+            <div class="col-xs-1 col-md-1"><a href="/website/home/index.html"><img src="/website/images/static/login/logo.png"/></a></div>
+            <div class="col-xs-6 col-md-6 title">
+                <span class="f20 gray02">个人账号设置</span>
+            </div>
+            <div class="col-xs-5 col-md-5 text-right">
+                <span class="f13 gray02 bold">+86-<span class="top_phone"></span></span>
+                <a href="/website/login/tenant.html" style="margin-left: 10px;">选择店铺</a>
+                <a href="javascript:;" class="f13 baseColor sign_out">退出</a>
+            </div>
+        </div>
+        <div class="establish_form"  style="position: relative; padding-top: 100px">
+            <div id="signUpForm" style="width: 450px; margin: 0 auto;">
+
+                <div class="ui-form-item g-mb30" style="border: none;">
+                    <span class="ui-form-txt">账号</span>
+                    <div class="set-form-div">
+                        <span>+86-<span class="phone"></span></span>
+                        <a href="/website/login/forget.html">修改密码</a>
+                        <!--<a href="javascript:;">注销账号</a>-->
+                    </div>
+                </div>
+                <div class="ui-form-item g-mb30 code-box" style="border: none;">
+                    <span class="ui-form-txt">昵称</span>
+                    <input class="ui-form-input" id="nickName" name="code" placeholder="请输入昵称" type="text" style="width: 60%; padding: 0 5px; border: 1px solid #e6e6e6;">
+                </div>
+                <div class="ui-form-item g-mb30" style="border: none;">
+                    <span class="ui-form-txt">头像</span>
+                    <div class="set-form-div" style="padding-left: 80px;">
+                        <div class="form-item">
+                            <img src="/website/images/placeholder/noneimg.png" id="uploadimg1" style="display: inline-block; width: 50px; height: 50px; position: absolute;top: 0;left: 0;">
+                            <form id="idform1" enctype ="multipart/form-data" style="width: auto; margin: 0 auto;">
+                                <input type="file" class="weui-uploader__input" name="file" id="idcard1">
+                                <span>修改</span>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="ui-form-btn g-mb20" style="position: static;margin: 50px 0 20px;">
+                    <input class="ui-button set_btn" id="submit" type="button" onclick="set_submit()" value="确认修改">
+                    <!--<a href="javascript:;" class="set_btn">返回店铺后台</a>-->
+                </div>
+                <div id="messageBox"></div>
+                <div id="tcaptcha"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@import "../include/footer.inc";
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script type="text/javascript">
+    var selectArea = [];
+    // getArea();
+    $(function () {
+        //60秒倒计时
+        var count = 60, iiRg;
+        var areaId;
+        // var base = location.protocol + "//" + (location.host.toUpperCase() === 'LOCALHOST:8080' ? 'dev.tiaohuo.com/' : location.host + "/");
+
+
+        $('.sign_out').attr('href',base + '/store/member/logout.jhtml');
+
+        $.ajax({
+            url: base + "store/member/view.jhtml",
+            type: "get",
+            data: '',
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $('.top_phone').html(data.mobile);
+                $('.phone').html(data.mobile);
+                if(data.headImg != null){
+                    $('#uploadimg1').attr('src',data.headImg);
+                    headImg = data.headImg;
+                }
+                if(data.nickName != null){
+                    $('#nickName').val(data.nickName);
+                }
+            }
+        });
+
+
+        function getFullPath() {
+            var file = document.getElementById('idcard1');
+            var fileList = file.files;
+            var img = document.getElementById("uploadimg1");
+            for (var i = 0; i < fileList.length; i++) {
+                if (file.files[0]) {
+                    img.style.display = 'block';
+                    img.style.width = '112px';
+                    img.style.height = '80px';
+                    if (window.createObjectURL != undefined) { // basic
+                        img.src = window.createObjectURL(file.files[0]);
+                    } else if (window.URL != undefined) { // mozilla(firefox)
+                        img.src = window.URL.createObjectURL(file.files[0]);
+                    } else if (window.webkitURL != undefined) { // webkit or chrome
+                        img.src = window.webkitURL.createObjectURL(file.files[0]);
+                    }
+                }
+                var f_i = new FormData();
+                f_i.append("file", fileList[i])
+            }
+        }
+        var headImg;
+        $("#idcard1").on('change', function () {
+            var aa = new FormData($("#idform1")[0]);
+            aa.append('fileType','image');
+            $.ajax({
+                url: base + "store/file/uploadFile.jhtml",
+                type: "POST",
+                data:aa,
+                dataType: "json",
+                cache: false,
+                contentType:false,
+                processData:false,
+                success: function (data) {
+                    getFullPath();
+                    headImg = data.url;
+                    $('#uploadimg1').attr('src',data.url);
+                }
+            });
+
+        });
+        //按enter键登录
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) { // enter 键
+                set_submit()
+            }
+        };
+    });
+    //======注册提交======//
+    function set_submit() {
+        // $("#submit").click(function () {
+        $.ajax({
+            url: base + "store/member/edit.jhtml",
+            type: "POST",
+            data:{
+                nickName: $("#nickName").val(),
+                headImg: $('#uploadimg1').attr('src'),
+            },
+            dataType: "json",
+            cache: false,
+            // contentType:false,
+            // processData:false,
+            success: function (message) {
+                if (message.type == "success") {
+                    $.message("success", "修改成功");
+                    // alert(headImg)
+                    // setTimeout(function () {
+                    //     location.replace('/website/login/tenant.html')
+                    // },1500);
+                    //                            login_method("account");
+                } else {
+                    $.message(message);
+                }
+            }
+        });
+        // });
+    }
+
+
+</script>
+
+</body>
+
+</html>

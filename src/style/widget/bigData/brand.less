@@ -1,0 +1,298 @@
+/*滚动条样式*/
+::-webkit-scrollbar {
+  width: 4px;
+  /*height: 4px;*/
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.2);
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(255,255,255,0.2);
+  border-radius: 0;
+  background: rgba(255,255,255,0.1);
+
+}
+.bigDataBrand{
+  //background: #031128;
+  background: #000;
+  display: flex;
+  p{
+    margin: 0;
+  }
+  .brandLeft{
+    //width: 15%;
+    padding-left: 2%;
+    background: #07162e;
+    .weui-cell{
+      padding: 10% 0;
+      margin-bottom: 5%;
+      border-bottom: 2px solid #dae4ec;
+      .logo{
+        width: 4vw;
+        height: 4vw;
+        border-radius: 50%;
+        margin-right: 20px;
+        img{
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .brand_list{
+      line-height: 2.5em;
+      li{
+        padding-left: 30px;
+        margin: 2% 0;
+        &:hover,a:hover,&.active{
+          color: @white;
+          background: @blue04;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+        }
+        &:nth-of-type(n+5){
+          padding-left: 70px;
+        }
+        a{
+          display: block;
+        }
+        img,i{
+          width: 30px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  .content{
+    padding: 30px 0 0 20px;
+    .sum{
+      &.sum_small{
+        width: 90%;
+        .sum_item{
+          display: block;
+          padding: 20px 0;
+        }
+      }
+      .sum_item{
+        width: 32%;
+        padding: 50px 0;
+        background: #07162e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:nth-child(2){
+          margin: 0 2%;
+        }
+        i{
+          margin-right: 40px;
+        }
+        i,div{
+          display: inline-block;
+        }
+      }
+    }
+    .number,.order{
+      margin: 20px 0;
+      .mouth{
+        width: 54%;
+        //height: 300px;
+        padding: 20px 2%;
+        background: #07162e;
+        .numberBar{
+          height: 230px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          #numberBar{
+            height: 600px;
+            //overflow-y: auto;
+          }
+        }
+
+      }
+      .week{
+        width: 44%;
+        padding: 20px 2% 0;
+        background: #07162e;
+        #numberPie{
+          height: 250px;
+        }
+      }
+
+    }
+    .money{
+      .mouth{
+        width: 66%;
+        //height: 300px;
+        padding: 20px 2%;
+        background: #07162e;
+        #moneyBar{
+          height: 260px;
+        }
+      }
+      .week{
+        width: 32%;
+        padding: 20px 2%;
+        background: #07162e;
+        #moneyPie{
+          height: 260px;
+        }
+      }
+    }
+    .order{
+      margin: 20px 0;
+      .mouth{
+        width: 54%;
+        //height: 300px;
+        padding: 20px 2%;
+        background: #07162e;
+        .orderBar{
+          height: 230px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          #orderBar{
+            height: 600px;
+          }
+        }
+      }
+      .week{
+        width: 44%;
+        padding: 20px 2% 0;
+        background: #07162e;
+        #orderPie{
+          height: 250px;
+        }
+      }
+
+    }
+  }
+
+}
+.mask {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100%;
+  display: none;
+}
+
+#mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  overflow: auto;
+  background-color: #000;
+  z-index: 99999;
+
+  .logo{
+    width: 12vw;
+    height: 12vw;
+  }
+}
+
+.mobile-nav ul li {
+  color: @white;
+  display: block;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+#mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background-color: #07162e;
+  z-index: 9999;
+  transition: all 0.3s ease-in;
+  .bigDataBrand{
+    .brandLeft {
+      .brand_list{
+        li{
+          margin: 4% 0;
+        }
+      }
+    }
+  }
+}
+
+.show-nav {
+  transform: translateX(0);
+}
+
+.hide-nav {
+  transform: translateX(-100%);
+}
+
+/*侧滑关键*/
+.mobile-nav-taggle {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  .glyphicon {
+    color: #ffffff;
+    line-height: 2;
+  }
+  a {
+    color: @white !important;
+    &:hover, &:focus {
+      color: @white !important;
+    }
+  }
+}
+
+
+.nav.avbar-inverse {
+  position: relative;
+}
+
+.nav-btn {
+  width: 10%;
+  padding: 15px 0;
+  //position: fixed;
+  //left: 0;
+  //top: 20px;
+  //z-index: 99999;
+}
+/* 小屏幕（平板，大于等于 768px） */
+@media (max-width: 768px) {
+  .bigDataBrand{
+    .content{
+      padding: 30px 10px;
+      .number,.money,.order{
+        .mouth{
+          width: 100%;
+          .numberBar{
+            #numberBar{
+              height: 400px;
+            }
+          }
+
+            #moneyBar{
+              height: 200px;
+            }
+
+          .orderBar{
+            #orderBar{
+              height: 400px;
+            }
+          }
+        }
+        .week{
+          width: 100%;
+          #numberPie,#orderPie{
+            height: 260px;
+          }
+        }
+      }
+    }
+  }
+
+}
